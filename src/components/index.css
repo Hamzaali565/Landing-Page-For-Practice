@@ -1,0 +1,224 @@
+.headContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 0em 7em;
+  margin-top: 10px;
+  align-items: center;
+}
+.headText {
+  margin-left: 5px;
+  font-family: Lato, sans-serif;
+}
+.headButton {
+  text-transform: none;
+  margin-right: 25px;
+  font-family: Lato, sans-serif;
+  background-color: #007bff;
+}
+/* 
+ sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            // mt:"200px",
+            color: "white",
+            fontFamily: "Lato, sans-serif",
+            fontWeight: 700,
+            // fontSize:"20px"
+          }}
+*/
+.signupData {
+  background: url(./images/sea.jpg);
+  padding: 12.1em 0;
+  margin-top: 10px;
+}
+.signupText {
+  text-align: center;
+  font-family: Lato, sans-serif;
+  font-weight: 700;
+  font-size: 50px;
+  color: white;
+  font-size: 48px;
+}
+.signupInput {
+  display: flex;
+  justify-content: center;
+  margin-top: 45px;
+}
+.signupInput > input {
+  padding: 1em 12em;
+  border-radius: 5px;
+  border-color: white;
+}
+.signupInput > button {
+  margin-left: 10px;
+  padding: 0em 2em;
+  text-transform: none;
+  font-family: Lato, sans-serif;
+  font-size: 20px;
+  background-color: #007bff;
+}
+.threeIconsContainer {
+  display: flex;
+  justify-content: space-around;
+  background-color: #f8f9fa;
+  padding: 8em 6em;
+}
+.icons {
+  display: flex;
+  justify-content: center;
+}
+/* .icons2 {
+  font-size: 100px;
+} */
+.heading {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  font-family: Lato, sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  margin-bottom: 5px;
+}
+.response {
+  display: flex;
+  justify-content: center;
+  font-family: Lato, sans-serif;
+  font-weight: 300;
+  color: #212529;
+  font-size: 20px;
+  text-align: center;
+  margin-top: 5px;
+  /* margin-top: 20px; */
+}
+.mainImageContainer {
+  display: flex;
+  justify-content: space-between;
+  /* padding: 4em 0; */
+  /* margin-bottom: 0px; */
+}
+.textContainer {
+  padding: 8em 0;
+  margin-left: 80px;
+}
+.headingI {
+  font-family: Lato, sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+}
+.description {
+  margin-top: 10px;
+  line-height: 30px;
+  font-family: Lato, sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+  color: #212529;
+}
+.imageContainer {
+  width: 674px;
+}
+.textContainer2 {
+  padding: 8em 0;
+  margin-right: 120px;
+}
+.reviewSection {
+  background-color: #f8f9fa;
+}
+.reviewSectionHeading {
+  display: flex;
+  justify-content: center;
+  font-family: Lato, sans-serif;
+  padding: 3em 0 2em 0;
+}
+.allAvatars {
+  display: flex;
+  justify-content: space-around;
+  padding: 0 4em 5em 4em;
+}
+.avatarContainer {
+  display: flex;
+  justify-content: center;
+}
+.name {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  font-family: Lato, sans-serif;
+  font-weight: 700;
+}
+.personReview {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  color: #212529;
+  font-family: Lato, sans-serif;
+}
+.personReview2 {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  text-align: center;
+  line-height: 25px;
+  color: #212529;
+  font-family: Lato, sans-serif;
+}
+.askingContainer {
+  background: url(images/newSea.jpg);
+  padding: 8em 0;
+}
+.askingHeading {
+  display: flex;
+  justify-content: center;
+  color: #ffffff;
+  font-family: Lato, sans-serif;
+}
+.askingInputAndButton {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.askingInputAndButton > input {
+  width: 400px;
+  padding: 12px 12px;
+  border-radius: 5px;
+  border-color: white;
+}
+.askingInputAndButton > button {
+  text-transform: none;
+  margin-left: 20px;
+  padding: 0 2em;
+  background-color: #007bff;
+  font-family: Lato, sans-serif;
+  font-size: 20px;
+}
+.footerDataContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 4em 5em;
+  background-color: #f8f9fa;
+  align-items: center;
+}
+.bulletPointsAndCR {
+  /* text-align: center; */
+}
+.bulletPoints {
+  display: flex;
+}
+.bulletPoints > li {
+  margin-right: 40px;
+  font-size: 15px;
+  color: #007bff;
+  font-family: Lato, sans-serif;
+}
+.iconsContainer > span {
+  margin-right: 20px;
+  color: #007bff;
+}
+.CR {
+  margin-left: 20px;
+  margin-top: 10px;
+  font-family: Lato, sans-serif;
+  font-weight: 300;
+  color: gray;
+  font-size: 15px;
+}
