@@ -1,7 +1,7 @@
-import { Avatar, Box, Button, Typography } from "@mui/material";
-// import { Box } from "@mui/system";
+import { Box } from "@mui/system";
+import { Avatar, Button, Typography } from "@mui/material";
 import React from "react";
-import "./index.css";
+import "./new2.css";
 import iphone from "./images/iphone.jpg";
 import code from "./images/code.jpg";
 import kid from "./images/kid.jpg";
@@ -17,13 +17,17 @@ import {
   TaskAlt,
   Twitter,
 } from "@mui/icons-material";
+import { ThemeContext } from "@emotion/react";
 
-const New = () => {
+const New2 = () => {
   return (
     <Box>
-      {/* Header */}
       <Box className="headContainer">
-        <Typography variant="h6" className="headText" sx={{fontFamily:"Lato, sans-serif"}}>
+        <Typography
+          variant="h6"
+          className="headText"
+          sx={{ fontFamily: "Lato, sans-serif" }}
+        >
           Start Bootstrap
         </Typography>
         <Button
@@ -33,24 +37,34 @@ const New = () => {
             textTransform: "none",
             bgcolor: "#007bff",
           }}
-          >
+        >
           Sign In
         </Button>
       </Box>
-      {/* sign up */}
+
       <Box className="signupData">
-        <Typography variant="h3" className="signupText" sx={{fontFamily:"Lato, sans-serif", fontWeight:700}}>
+        <h1 className="signupText">
           Build a landing page for your buisness
           <br />
           or project and generate more leads!
-        </Typography>
+        </h1>
+        <h1 className="signupText2">
+          Generate more lead with a professional landing Page.
+        </h1>
         <Box className="signupInput">
           <input type="text" placeholder="Enter your Email..." name="" id="" />
           <Button variant="contained">Sign up!</Button>
         </Box>
+        <Box className="resMob">
+            <Box className="resMobInp">
+                <input class="mainLoginInput" type="text" placeholder="Email Address" name="" id="" />
+            </Box>
+            <Box className="resMobButton">
+                <Button variant="contained">Submit</Button>
+            </Box>
+        </Box>
       </Box>
 
-      {/* 3 icons */}
       <Box className="threeIconsContainer">
         {/* 1 icon */}
         <Box>
@@ -64,7 +78,11 @@ const New = () => {
             />
           </Box>
           <Box className="heading">Fully Responsive</Box>
-          <Typography variant="p" className="response" sx={{fontFamily:"Lato, sans-serif", fontWeight:300}}>
+          <Typography
+            variant="p"
+            className="response"
+            sx={{ fontFamily: "Lato, sans-serif",}}
+          >
             This theme will look greater any
             <br />
             device, no matter the size
@@ -108,85 +126,48 @@ const New = () => {
         </Box>
       </Box>
 
-      {/* images portion */}
-
-      {/* 1 image */}
       <Box className="mainImageContainer">
+      <img src={iphone} alt="" className="imageContainer2" />
         <Box className="textContainer">
-          <Typography
-            variant="h5"
-            className="headingI"
-            sx={{
-              fontFamily: "Lato, sans-serif",
-              fontWeight: 700,
-              fontSize: "30px",
-            }}
-          >
-            Fully Responsive Design
-          </Typography>
+          <h1 className="headingI">Fully Responsive Design</h1>
           <Box className="description">
             When you use a theme created by Start Bootstrap
-            <br />
             you know the theme will look great on any
-            <br />
             device, whether it's a phone ,tablet, or desktop the
-            <br />
             page will beheve responsively
           </Box>
         </Box>
 
         <img src={iphone} alt="" className="imageContainer" />
       </Box>
-      {/* 2 image */}
+
       <Box className="mainImageContainer">
+        <img src={code} alt="" className="imageContainer2" />
         <img src={code} alt="" className="imageContainer" />
 
-        <Box className="textContainer2">
-          <Typography
-            variant="h5"
-            className="headingI"
-            sx={{
-              fontFamily: "Lato, sans-serif",
-              fontWeight: 700,
-              fontSize: "30px",
-            }}
-          >
-            Updated for Bootstrap 4
-          </Typography>
+        <Box className="textContainer">
+          <h1 className="headingI">Updated for Bootstrap 4</h1>
           <Box className="description">
             Newly Improved, and full of great utility classes,
-            <br />
             Bootstrap 4 is leading the way in mobile responsive
-            <br />
             web development! All of the themes on Start
-            <br />
+            
             Bootstrap are now using Bootstrap 4!
           </Box>
         </Box>
+        {/* <img src={code} alt="" className="imageContainer" /> */}
+
       </Box>
-      {/* 3 image */}
+
       <Box className="mainImageContainer">
+      <img src={kid} alt="" className="imageContainer2" />
         <Box className="textContainer">
-          <Typography
-            variant="h5"
-            className="headingI"
-            sx={{
-              fontFamily: "Lato, sans-serif",
-              fontWeight: 700,
-              fontSize: "30px",
-            }}
-          >
-            Easy to Use & Customize
-          </Typography>
+          <h1 className="headingI">Easy to Use & Customize</h1>
           <Box className="description">
             Landing Page is just HTML and CSS with splash of
-            <br />
             SCSS for users who demand sone deeper
-            <br />
             customization options. Out of the box,just add your
-            <br />
             content and images,and your new landing page will
-            <br />
             be ready to go!
           </Box>
         </Box>
@@ -194,38 +175,31 @@ const New = () => {
         <img src={kid} alt="" className="imageContainer" />
       </Box>
 
-      {/* What peoples say portion */}
       <Box className="reviewSection">
         <h1 className="reviewSectionHeading">What people are saying...</h1>
         <Box className="allAvatars">
           {/* Avatar 1 */}
           <Box>
             <Box className="avatarContainer">
-              <Avatar
-                alt="Remy Sharp"
-                src={review}
-                sx={{
-                  height: "200px",
-                  width: "200px",
-                }}
-              />
+              <img src={review} className="avatar" />
             </Box>
             <h2 className="name">Margaret E.</h2>
-            <p className="personReview" >
+            <p className="personReview">
               "This is fantastic! Thanks so much guys"
             </p>
           </Box>
           {/* Avatar 2 */}
-          <Box>
+          <Box  className = "mobMargin">
             <Box className="avatarContainer">
-              <Avatar
+              {/* <Avatar
                 alt="Remy Sharp"
                 src={review2}
                 sx={{
                   height: "200px",
                   width: "200px",
                 }}
-              />
+              /> */}
+              <img src={review2} className="avatar" />
             </Box>
             <h2 className="name">Fref S.</h2>
             <p className="personReview2">
@@ -235,16 +209,9 @@ const New = () => {
             </p>
           </Box>
           {/* Avatar 3 */}
-          <Box>
+          <Box  className = "mobMargin">
             <Box className="avatarContainer">
-              <Avatar
-                alt="Remy Sharp"
-                src={review3}
-                sx={{
-                  height: "200px",
-                  width: "200px",
-                }}
-              />
+              <img src={review3} className="avatar" />
             </Box>
             <h2 className="name">Sarah W.</h2>
             <p className="personReview2">
@@ -256,16 +223,23 @@ const New = () => {
         </Box>
       </Box>
 
-      {/* Asking again for Signup */}
       <Box className="askingContainer">
         <h1 className="askingHeading">Ready to get started?Sign up now!</h1>
         <Box className="askingInputAndButton">
           <input type="text" placeholder="Enter your email" name="" id="" />
           <Button variant="contained">Sign up!</Button>
         </Box>
+        <Box className="hideIt">
+             <Box className="askingInputAndButton2">
+          <input type="text" placeholder="Email Address" name="" id="" />
+        </Box>
+        <Box className="SButton">
+          <Button variant="contained">Submit</Button>
+        </Box>
+        </Box>
+       
       </Box>
 
-      {/* footer */}
       <Box className="footerDataContainer">
         <Box className="bulletPointsAndCR">
           <ul className="bulletPoints">
@@ -288,9 +262,32 @@ const New = () => {
           </span>
         </Box>
       </Box>
-     
+    
+     <Box className="footerDataContainer2">
+
+      <Box className="bulletPointsAndCR2">
+          <ul className="bulletPoints2">
+            <li>About</li>
+            <li>Contact</li>
+            <li>Terms of Use</li>
+            <li>Privacy Policy</li>
+          </ul>
+          <p className="CR2">© Your website 2018.All Right Reserved.</p>
+        </Box>
+      <Box className="iconsContainer2">
+          <span>
+            <Facebook sx={{ fontSize: "40px" }} />
+          </span>
+          <span>
+            <Twitter sx={{ fontSize: "40px" }} />
+          </span>
+          <span>
+            <Instagram sx={{ fontSize: "40px" }} />
+          </span>
+        </Box>
+      </Box>
     </Box>
   );
 };
 
-export default New;
+export default New2;

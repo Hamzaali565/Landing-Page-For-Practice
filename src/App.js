@@ -1,13 +1,12 @@
 import logo from "./logo.svg";
 import { Stack } from "@mui/system";
-import Clone from "./components/Clone";
 import New from "./components/New";
+import New2 from "./components/New2";
 
 function App() {
   return (
     <Stack>
-      {/* <Clone/> */}
-      <New />
+      <New2/>
     </Stack>
   );
 }

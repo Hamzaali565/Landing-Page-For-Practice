@@ -1,8 +1,9 @@
 .headContainer {
+  background-color: #f8f9fa;
   display: flex;
   justify-content: space-between;
-  padding: 0em 7em;
-  margin-top: 10px;
+  padding: 10px 7em;
+  /* margin-top: 10px; */
   align-items: center;
 }
 .headText {
@@ -15,22 +16,10 @@
   font-family: Lato, sans-serif;
   background-color: #007bff;
 }
-/* 
- sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            // mt:"200px",
-            color: "white",
-            fontFamily: "Lato, sans-serif",
-            fontWeight: 700,
-            // fontSize:"20px"
-          }}
-*/
 .signupData {
-  background: url(./images/sea.jpg);
+  background: url(./images/sea3.jpg);
   padding: 12.1em 0;
-  margin-top: 10px;
+  /* margin-top: 10px; */
 }
 .signupText {
   text-align: center;
@@ -46,7 +35,8 @@
   margin-top: 45px;
 }
 .signupInput > input {
-  padding: 1em 12em;
+  padding: 15px ;
+  width: 450px;
   border-radius: 5px;
   border-color: white;
 }
@@ -152,6 +142,7 @@
   margin-top: 10px;
   color: #212529;
   font-family: Lato, sans-serif;
+  font-weight: 300;
 }
 .personReview2 {
   display: flex;
@@ -161,6 +152,7 @@
   line-height: 25px;
   color: #212529;
   font-family: Lato, sans-serif;
+  font-weight: 300;
 }
 .askingContainer {
   background: url(images/newSea.jpg);
@@ -179,7 +171,7 @@
 }
 .askingInputAndButton > input {
   width: 400px;
-  padding: 12px 12px;
+  padding: 15px 12px;
   border-radius: 5px;
   border-color: white;
 }
@@ -194,19 +186,17 @@
 .footerDataContainer {
   display: flex;
   justify-content: space-between;
-  padding: 4em 5em;
+  padding: 3em 6em;
   background-color: #f8f9fa;
   align-items: center;
-}
-.bulletPointsAndCR {
-  /* text-align: center; */
 }
 .bulletPoints {
   display: flex;
 }
 .bulletPoints > li {
-  margin-right: 40px;
+  margin-right: 30px;
   font-size: 15px;
+  list-style: none;
   color: #007bff;
   font-family: Lato, sans-serif;
 }
@@ -215,7 +205,8 @@
   color: #007bff;
 }
 .CR {
-  margin-left: 20px;
+  /* margin-left: 40px; */
+  padding: 0 0 0 3em;
   margin-top: 10px;
   font-family: Lato, sans-serif;
   font-weight: 300;
