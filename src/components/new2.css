@@ -92,17 +92,23 @@
         display: block;
     }
 }
+@media only screen and (max-width: 425px) {
+    .signupText2 {
+    font-size: 30px;
+    }
+}
 
 @media only screen and (max-width: 375px) {
     .signupText2 {
         padding: 0 15px;
     }
-   
+
 }
 
 @media only screen and (max-width: 320px) {
-    .signupText {
-        font-size: 18px;
+    .signupText2{
+        font-size: 25px; 
+        padding: 0 ;
     }
 }
 
@@ -228,44 +234,94 @@
         display: flex;
         justify-content: center;
         margin-top: 20px;
-      
+
     }
-    .resMobButton > button{
-       padding: 1em 13em;
-       text-transform: none;
-       background-color: #007bff;
-       font-family: Lato, sans-serif;
-       font-weight: 500;
-       font-size: 20px;
-    }
-}
-@media only screen and (max-width: 375px) {
-    .resMobInp>input {
-    width: 330px;  
-    padding: 20px 9px 20px 9px;  
-    }
-    .resMobButton > button{
-        padding: 15px 7em;
+
+    .resMobButton>button {
+        padding: 10px 8em;
         text-transform: none;
-     }
-     .mainLoginInput::-webkit-input-placeholder {
+        background-color: #007bff;
+        font-family: Lato, sans-serif;
+        font-weight: 500;
+        font-size: 20px;
+    }
+
+    .mainLoginInput::-webkit-input-placeholder {
         font-family: 'lato', sans-serif;
         font-size: 20px;
         /* padding-top:20px; */
         /* margin-top: 10px; */
-            padding: 20px 0 3px 10px;
-            font-weight: 500;
-      }
+        padding: 20px 0 3px 10px;
+        font-weight: 500;
+    }
 }
+
+@media only screen and (max-width: 390px) {
+    .resMobInp>input {
+        width: 330px;
+        padding: 20px 9px 20px 9px;
+    }
+
+    .resMobButton>button {
+        padding: 10px 7.2em;
+        text-transform: none;
+    }
+    .signupText2 {
+       padding: 0 1em;
+    }
+
+}
+@media only screen and (max-width: 393px) {
+    .resMobInp>input {
+        width: 330px;
+        padding: 20px 9px 20px 9px;
+    }
+
+    .resMobButton>button {
+        padding: 10px 7.2em;
+        text-transform: none;
+    }
+    .signupText2 {
+       padding: 0 20px;
+    }
+
+}
+@media only screen and (max-width: 375px) {
+    .resMobInp>input {
+        width: 330px;
+        padding: 20px 9px 20px 9px;
+    }
+
+    .resMobButton>button {
+        padding: 10px 7.2em;
+        text-transform: none;
+    }
+
+}
+@media only screen and (max-width: 360px) {
+    .resMobInp>input {
+        width: 320px;
+        padding: 20px 9px 20px 9px;
+    }
+
+    .resMobButton>button {
+        padding: 10px 6.9em;
+        text-transform: none;
+    }
+
+}
+
 @media only screen and (max-width: 320px) {
     .resMobInp>input {
-    width: 280px;    
+        width: 280px;
     }
-    .resMobButton > button{
-        padding: 1em 10em 1em 9em;
+
+    .resMobButton>button {
+        padding: 10px 6em 10px 5.6em;
         text-transform: none;
-     }
+    }
 }
+
 /* @media only screen and (max-width: 768px) {
     .threeIconsContainer {
         padding: 8em 0em;
@@ -277,11 +333,13 @@
     justify-content: center;
     /* margin-top: 100px; */
 }
+
 @media only screen and (max-width: 425px) {
     .icons {
         margin-top: 70px;
     }
 }
+
 .icons2 {
     font-size: 100px;
 }
@@ -291,9 +349,10 @@
     justify-content: center;
     margin-top: 20px;
     font-family: Lato, sans-serif;
+    color: black;
     font-weight: 700;
     font-size: 20px;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
 }
 
 @media only screen and (max-width: 768px) {
@@ -359,6 +418,7 @@
 
 .textContainer {
     padding: 8em 2em;
+    text-align: start;
 }
 
 @media only screen and (max-width: 768px) {
@@ -411,6 +471,12 @@
     }
 }
 
+@media only screen and (max-width: 375px) {
+    .headingI {
+        font-size: 25px;
+    }
+}
+
 @media only screen and (max-width: 320px) {
     .headingI {
         font-size: 20px;
@@ -421,10 +487,10 @@
     margin-top: 10px;
     line-height: 30px;
     font-family: Lato, sans-serif;
-    font-weight: 300;
+    font-weight: 400;
     font-size: 20px;
+    color: gray;
     text-align: left;
-    color: #212529;
     padding-right: 55px;
 }
 
@@ -438,16 +504,18 @@
 @media only screen and (max-width: 425px) {
     .description {
         font-size: 20px;
-        line-height: 25px;
-        padding-left: 0.1em;
+        line-height: 30px;
+        /* padding-left: 0.1em; */
     }
 }
 
-/* @media only screen and (max-width: 320px) {
+@media only screen and (max-width: 375px) {
     .description {
-        font-size: 15px;
+        /* font-size: 15px; */
+        line-height: 30px;
+        padding-right: 65px;
     }
-} */
+}
 
 
 .imageContainer {
@@ -479,9 +547,10 @@
         display: none;
     }
 
-    .imageContainer2{
+    .imageContainer2 {
         display: block;
         width: 100%;
+        height: auto;
         /* padding: 10em 0; */
     }
 
@@ -506,6 +575,14 @@
     padding: 3em 0 2em 0;
 }
 
+@media only screen and (max-width: 425px) {
+    .reviewSectionHeading {
+        font-size: 25px;
+        /* padding: ; */
+        padding: 5em 0 3em 0;
+
+    }
+}
 @media only screen and (max-width: 375px) {
     .reviewSectionHeading {
         font-size: 25px;
@@ -529,6 +606,8 @@
 @media only screen and (max-width: 425px) {
     .allAvatars {
         flex-direction: column;
+        padding: 0 0em 9em 0em;
+
     }
 }
 
@@ -561,7 +640,7 @@
     display: flex;
     justify-content: center;
     margin-top: 10px;
-    color: #212529;
+    color: gray;
     font-family: Lato, sans-serif;
     font-weight: 300;
     text-align: center;
@@ -580,9 +659,10 @@
     margin-top: 10px;
     text-align: center;
     line-height: 25px;
-    color: #212529;
+    color: gray;
     font-family: Lato, sans-serif;
     font-weight: 300;
+    /* padding: 0 9em; */
 }
 
 @media only screen and (max-width: 768px) {
@@ -595,6 +675,36 @@
     .personReview2 {
         /* font-size: 17px; */
     }
+
+    .mobMargin {
+        margin-top: 50px;
+    }
+    .personReview2 {
+        font-size: 18px;
+        font-weight: 400;
+    }
+    .personReview {
+        font-size: 18px;
+        font-weight: 400;
+    }
+}
+
+@media only screen and (max-width: 375px) {
+    .personReview2 br {
+
+        display: none;
+    }
+
+    .personReview2 {
+        font-size: 15px;
+        font-weight: 400;
+        padding: 0em 2em;
+    }
+    .personReview {
+        font-size: 15px;
+        font-weight: 400;
+    }
+
 
     .mobMargin {
         margin-top: 50px;
@@ -614,9 +724,14 @@
 
 @media only screen and (max-width: 425px) {
     .askingContainer {
-        padding: 5em 0;
+        padding: 7em 0;
     }
 }
+/* @media only screen and (max-width: 425px) {
+    .askingContainer {
+        padding: 5em 0;
+    }
+} */
 
 .askingHeading {
     display: flex;
@@ -680,44 +795,91 @@
     }
 
     .askingInputAndButton2>input {
-        padding: 20px 5px;
+        padding: 20px 3px;
         width: 400px;
         border-radius: 5px;
         border-color: white;
+    }
+    .mainLoginInput::-webkit-input-placeholder {
+        font-family: 'lato', sans-serif;
+        font-size: 20px;
+        /* padding-top:20px; */
+        /* margin-top: 10px; */
+        padding: 20px 0 3px 10px;
+        font-weight: 500;
     }
 
     .SButton {
         display: flex;
         justify-content: center;
-        margin-top: 10px;
+        margin-top: 15px;
     }
 
     .SButton>button {
-        padding: 1em 13em;
+        padding: 10px 8.7em;
         text-transform: none;
+        background-color: #007bff;
+        text-transform: none;
+        font-size: 20px;
     }
 }
 
 
+@media only screen and (max-width: 414px) {
+    .askingInputAndButton2>input {
+        width: 380px;
+    }
+
+    .SButton>button {
+        padding: 10px 8em;
+    }
+}
+@media only screen and (max-width: 393px) {
+    .askingInputAndButton2>input {
+        width: 350px;
+    }
+
+    .SButton>button {
+        padding: 10px 7.4em;
+    }
+}
+@media only screen and (max-width: 390px) {
+    .askingInputAndButton2>input {
+        width: 350px;
+    }
+
+    .SButton>button {
+        padding: 10px 7.4em;
+    }
+}
 @media only screen and (max-width: 375px) {
     .askingInputAndButton2>input {
         width: 350px;
     }
 
     .SButton>button {
-        padding: 1em 11em;
+        padding: 10px 7.3em;
     }
 }
+@media only screen and (max-width: 360px) {
+    .askingInputAndButton2>input {
+        width: 330px;
+    }
 
+    .SButton>button {
+        padding: 10px 6.8em;
+    }
+}
 @media only screen and (max-width: 320px) {
     .askingInputAndButton2>input {
         width: 300px;
     }
 
     .SButton>button {
-        padding: 1em 9em;
+        padding: 10px 6em;
     }
 }
+
 
 .askingInputAndButton>button {
     text-transform: none;
@@ -818,7 +980,7 @@
 .iconsContainer2 {
     text-align: center;
     color: #007bff;
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
 .iconsContainer2>span {
@@ -826,16 +988,24 @@
 }
 
 .bulletPoints2 {
+    margin-right: 20px;
     display: flex;
     justify-content: center;
 }
 
 .bulletPoints2>li {
-    font-size: 12px;
-    margin-right: 20px;
+    font-size: 16px;
+    /* margin-right: 20px; */
+    padding: 10px;
     list-style: none;
     color: #007bff;
     font-family: Lato, sans-serif;
+}
+.pp{
+    display: flex;
+    justify-content: center;
+    color: #007bff;
+    /* margin-top: 10px; */
 }
 
 
@@ -843,7 +1013,8 @@
     padding: 0 0 0 6em;
     font-family: Lato, sans-serif;
     font-weight: 300;
-    margin-top: 5px;
+    /* margin-top: 5px; */
+    font-weight: 400;
     color: gray;
     font-size: 15px;
 }

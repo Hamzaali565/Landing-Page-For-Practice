@@ -49,7 +49,7 @@ const New2 = () => {
           or project and generate more leads!
         </h1>
         <h1 className="signupText2">
-          Generate more lead with a professional landing Page.
+          Generate more leads with a professional landing Page.
         </h1>
         <Box className="signupInput">
           <input type="text" placeholder="Enter your Email..." name="" id="" />
@@ -146,13 +146,13 @@ const New2 = () => {
         <img src={code} alt="" className="imageContainer" />
 
         <Box className="textContainer">
-          <h1 className="headingI">Updated for Bootstrap 4</h1>
+          <h1 className="headingI">Updated for Bootstrap 5</h1>
           <Box className="description">
             Newly Improved, and full of great utility classes,
-            Bootstrap 4 is leading the way in mobile responsive
+            Bootstrap 5 is leading the way in mobile responsive
             web development! All of the themes on Start
             
-            Bootstrap are now using Bootstrap 4!
+            Bootstrap are now using Bootstrap 5!
           </Box>
         </Box>
         {/* <img src={code} alt="" className="imageContainer" /> */}
@@ -217,7 +217,7 @@ const New2 = () => {
             <p className="personReview2">
               "Thanks so much guys for making these free
               <br />
-              resources availaible for us"
+               resources availaible for us"
             </p>
           </Box>
         </Box>
@@ -231,7 +231,7 @@ const New2 = () => {
         </Box>
         <Box className="hideIt">
              <Box className="askingInputAndButton2">
-          <input type="text" placeholder="Email Address" name="" id="" />
+          <input type="text" className="mainLoginInput" placeholder="Email Address" name="" id="" />
         </Box>
         <Box className="SButton">
           <Button variant="contained">Submit</Button>
@@ -270,19 +270,20 @@ const New2 = () => {
             <li>About</li>
             <li>Contact</li>
             <li>Terms of Use</li>
-            <li>Privacy Policy</li>
+            {/* <li></li> */}
           </ul>
+          <p className="pp">Privacy Policy</p>
           <p className="CR2">© Your website 2018.All Right Reserved.</p>
         </Box>
       <Box className="iconsContainer2">
           <span>
-            <Facebook sx={{ fontSize: "40px" }} />
+            <Facebook sx={{ fontSize: "30px" }} />
           </span>
           <span>
-            <Twitter sx={{ fontSize: "40px" }} />
+            <Twitter sx={{ fontSize: "30px" }} />
           </span>
           <span>
-            <Instagram sx={{ fontSize: "40px" }} />
+            <Instagram sx={{ fontSize: "30px" }} />
           </span>
         </Box>
       </Box>
