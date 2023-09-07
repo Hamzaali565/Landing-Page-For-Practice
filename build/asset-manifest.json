@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/static/css/main.ad2b5952.css",
+    "main.js": "/static/js/main.ea142f35.js",
+    "static/js/787.5a90a077.chunk.js": "/static/js/787.5a90a077.chunk.js",
+    "static/media/kid.jpg": "/static/media/kid.cc8768c5a8353ab194c7.jpg",
+    "static/media/iphone.jpg": "/static/media/iphone.ca33ef345a3da43d0e81.jpg",
+    "static/media/review3.jpg": "/static/media/review3.bfe74e5554cc8e031dcd.jpg",
+    "static/media/sea3.jpg": "/static/media/sea3.69a14bec6aa07a1d1e92.jpg",
+    "static/media/newSea.jpg": "/static/media/newSea.36eea1eb26754913aec8.jpg",
+    "static/media/code.jpg": "/static/media/code.bb5bb85256003ae7bc12.jpg",
+    "static/media/review2.jpg": "/static/media/review2.d591dbed1031179477e1.jpg",
+    "static/media/review.jpg": "/static/media/review.ad7dd3385bc5e819d3f5.jpg",
+    "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/index.html",
+    "main.ad2b5952.css.map": "/static/css/main.ad2b5952.css.map",
+    "main.ea142f35.js.map": "/static/js/main.ea142f35.js.map",
+    "787.5a90a077.chunk.js.map": "/static/js/787.5a90a077.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ad2b5952.css",
+    "static/js/main.ea142f35.js"
+  ]
+}
