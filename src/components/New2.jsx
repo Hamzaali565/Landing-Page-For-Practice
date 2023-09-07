@@ -1,5 +1,5 @@
 import { Box } from "@mui/system";
-import { Avatar, Button, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import React from "react";
 import "./new2.css";
 import iphone from "./images/iphone.jpg";
@@ -17,7 +17,6 @@ import {
   TaskAlt,
   Twitter,
 } from "@mui/icons-material";
-import { ThemeContext } from "@emotion/react";
 
 const New2 = () => {
   return (
@@ -56,12 +55,18 @@ const New2 = () => {
           <Button variant="contained">Sign up!</Button>
         </Box>
         <Box className="resMob">
-            <Box className="resMobInp">
-                <input class="mainLoginInput" type="text" placeholder="Email Address" name="" id="" />
-            </Box>
-            <Box className="resMobButton">
-                <Button variant="contained">Submit</Button>
-            </Box>
+          <Box className="resMobInp">
+            <input
+              class="mainLoginInput"
+              type="text"
+              placeholder="Email Address"
+              name=""
+              id=""
+            />
+          </Box>
+          <Box className="resMobButton">
+            <Button variant="contained">Submit</Button>
+          </Box>
         </Box>
       </Box>
 
@@ -81,7 +86,7 @@ const New2 = () => {
           <Typography
             variant="p"
             className="response"
-            sx={{ fontFamily: "Lato, sans-serif",}}
+            sx={{ fontFamily: "Lato, sans-serif" }}
           >
             This theme will look greater any
             <br />
@@ -127,14 +132,13 @@ const New2 = () => {
       </Box>
 
       <Box className="mainImageContainer">
-      <img src={iphone} alt="" className="imageContainer2" />
+        <img src={iphone} alt="" className="imageContainer2" />
         <Box className="textContainer">
           <h1 className="headingI">Fully Responsive Design</h1>
           <Box className="description">
-            When you use a theme created by Start Bootstrap
-            you know the theme will look great on any
-            device, whether it's a phone ,tablet, or desktop the
-            page will beheve responsively
+            When you use a theme created by Start Bootstrap you know the theme
+            will look great on any device, whether it's a phone ,tablet, or
+            desktop the page will beheve responsively
           </Box>
         </Box>
 
@@ -148,27 +152,23 @@ const New2 = () => {
         <Box className="textContainer">
           <h1 className="headingI">Updated for Bootstrap 5</h1>
           <Box className="description">
-            Newly Improved, and full of great utility classes,
-            Bootstrap 5 is leading the way in mobile responsive
-            web development! All of the themes on Start
-            
-            Bootstrap are now using Bootstrap 5!
+            Newly Improved, and full of great utility classes, Bootstrap 5 is
+            leading the way in mobile responsive web development! All of the
+            themes on Start Bootstrap are now using Bootstrap 5!
           </Box>
         </Box>
         {/* <img src={code} alt="" className="imageContainer" /> */}
-
       </Box>
 
       <Box className="mainImageContainer">
-      <img src={kid} alt="" className="imageContainer2" />
+        <img src={kid} alt="" className="imageContainer2" />
         <Box className="textContainer">
           <h1 className="headingI">Easy to Use & Customize</h1>
           <Box className="description">
-            Landing Page is just HTML and CSS with splash of
-            SCSS for users who demand sone deeper
-            customization options. Out of the box,just add your
-            content and images,and your new landing page will
-            be ready to go!
+            Landing Page is just HTML and CSS with splash of SCSS for users who
+            demand sone deeper customization options. Out of the box,just add
+            your content and images,and your new landing page will be ready to
+            go!
           </Box>
         </Box>
 
@@ -181,7 +181,7 @@ const New2 = () => {
           {/* Avatar 1 */}
           <Box>
             <Box className="avatarContainer">
-              <img src={review} className="avatar" />
+              <img src={review} className="avatar" alt="Avatar" />
             </Box>
             <h2 className="name">Margaret E.</h2>
             <p className="personReview">
@@ -189,7 +189,7 @@ const New2 = () => {
             </p>
           </Box>
           {/* Avatar 2 */}
-          <Box  className = "mobMargin">
+          <Box className="mobMargin">
             <Box className="avatarContainer">
               {/* <Avatar
                 alt="Remy Sharp"
@@ -199,7 +199,7 @@ const New2 = () => {
                   width: "200px",
                 }}
               /> */}
-              <img src={review2} className="avatar" />
+              <img src={review2} className="avatar" alt="Avatar" />
             </Box>
             <h2 className="name">Fref S.</h2>
             <p className="personReview2">
@@ -209,15 +209,15 @@ const New2 = () => {
             </p>
           </Box>
           {/* Avatar 3 */}
-          <Box  className = "mobMargin">
+          <Box className="mobMargin">
             <Box className="avatarContainer">
-              <img src={review3} className="avatar" />
+              <img src={review3} className="avatar" alt="Avatar" />
             </Box>
             <h2 className="name">Sarah W.</h2>
             <p className="personReview2">
               "Thanks so much guys for making these free
               <br />
-               resources availaible for us"
+              resources availaible for us"
             </p>
           </Box>
         </Box>
@@ -230,14 +230,19 @@ const New2 = () => {
           <Button variant="contained">Sign up!</Button>
         </Box>
         <Box className="hideIt">
-             <Box className="askingInputAndButton2">
-          <input type="text" className="mainLoginInput" placeholder="Email Address" name="" id="" />
+          <Box className="askingInputAndButton2">
+            <input
+              type="text"
+              className="mainLoginInput"
+              placeholder="Email Address"
+              name=""
+              id=""
+            />
+          </Box>
+          <Box className="SButton">
+            <Button variant="contained">Submit</Button>
+          </Box>
         </Box>
-        <Box className="SButton">
-          <Button variant="contained">Submit</Button>
-        </Box>
-        </Box>
-       
       </Box>
 
       <Box className="footerDataContainer">
@@ -262,10 +267,9 @@ const New2 = () => {
           </span>
         </Box>
       </Box>
-    
-     <Box className="footerDataContainer2">
 
-      <Box className="bulletPointsAndCR2">
+      <Box className="footerDataContainer2">
+        <Box className="bulletPointsAndCR2">
           <ul className="bulletPoints2">
             <li>About</li>
             <li>Contact</li>
@@ -275,7 +279,7 @@ const New2 = () => {
           <p className="pp">Privacy Policy</p>
           <p className="CR2">© Your website 2018.All Right Reserved.</p>
         </Box>
-      <Box className="iconsContainer2">
+        <Box className="iconsContainer2">
           <span>
             <Facebook sx={{ fontSize: "30px" }} />
           </span>
