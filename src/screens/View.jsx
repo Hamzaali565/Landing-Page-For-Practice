@@ -45,49 +45,67 @@ const View = () => {
   return (
     <div>
       <Header />
-      <p className="text-center text-3xl mt-4 font-bold">
+      <p className="text-center text-lg md:text-3xl mt-4 font-bold ">
         Search Consumables Product List
       </p>
       <div className="flex justify-center mt-4">
         <input
           type="text"
-          className="border-2 w-[40%] p-2 rounded border-black"
+          className="border-2 w-[60%] md:w-[40%] p-2 rounded border-black"
           name=""
           placeholder="Search..."
           id=""
           onChange={(e) => filter_name(e.target.value)}
         />
       </div>
-      <div className="border-2 flex font-bold text-lg item-center bg-[#F4F4F4] mt-4">
-        <p className="border-r-2 p-2 w-[10%] text-center">Code</p>
-        <p className="border-r-2 p-2 w-[20%] text-center">Name</p>
-        <p className="border-r-2 p-2 w-[10%] text-center">Manufacturer</p>
-        <p className="border-r-2 p-2 w-[15%] text-center">Part Number</p>
-        <p className="border-r-2 p-2 w-[7.5%] text-center">Sales Price</p>
-        <p className="border-r-2 p-2 w-[7.5%] text-center">Free Stock</p>
-        <p className="border-r-2 p-2 w-[30%] text-center">Printer Models</p>
+      <div className="border-2 flex font-bold text-xs md:text-sm lg:text-lg item-center bg-[#F4F4F4] mt-4">
+        <p className="border-r-2 p-2 w-[25%] md: lg:w-[10%] text-center">
+          Code
+        </p>
+        <p className="border-r-2 p-2 w-[25%] md: lg:w-[20%] text-center">
+          Name
+        </p>
+        <p className="border-r-2 p-2 w-[10%] text-center hidden lg:block">
+          Manufacturer
+        </p>
+        <p className="border-r-2 p-2 w-[15%] text-center hidden md:block">
+          Part Number
+        </p>
+        <p className="border-r-2 p-2 w-[25%] md: lg:w-[7.5%] text-center ">
+          Sales Price
+        </p>
+        <p className="border-r-2 p-2 w-[25%] md: lg:w-[7.5%] text-center">
+          Free Stock
+        </p>
+        <p className="border-r-2 p-2 w-[30%] text-center hidden lg:block">
+          Printer Models
+        </p>
       </div>
       {listData.length !== 0 &&
         listData.map((items, index) => (
           <div
-            className="border-2 border-t-0 flex text-lg item-center "
+            className="border-2 border-t-0 flex text-xs md:text-sm lg:text-lg item-center "
             key={index}
           >
-            <p className="border-r-2 p-2 w-[10%] text-center">{items?.code}</p>
-            <p className="border-r-2 p-2 w-[20%] text-center">{items?.name}</p>
-            <p className="border-r-2 p-2 w-[10%] text-center">
+            <p className="border-r-2 p-2 w-[25%] md: lg:w-[10%] text-center">
+              {items?.code}
+            </p>
+            <p className="border-r-2 p-2 w-[25%] md: lg:w-[20%] text-center">
+              {items?.name}
+            </p>
+            <p className="border-r-2 p-2 w-[10%] text-center hidden lg:block">
               {items?.manufacturer}
             </p>
-            <p className="border-r-2 p-2 w-[15%] text-center">
+            <p className="border-r-2 p-2 w-[15%] text-center hidden md:block">
               {items?.part_number}
             </p>
-            <p className="border-r-2 p-2 w-[7.5%] text-center">
+            <p className="border-r-2 p-2 w-[25%] md: lg:w-[7.5%] text-center">
               {items?.sales_price}
             </p>
-            <p className="border-r-2 p-2 w-[7.5%] text-center">
+            <p className="border-r-2 p-2 w-[25%] md: lg:w-[7.5%] text-center">
               {items?.free_stock}
             </p>
-            <p className="border-r-2 p-2 w-[30%] text-center">
+            <p className="border-r-2 p-2 w-[30%] text-center hidden lg:block">
               {items?.printer_model}
             </p>
           </div>

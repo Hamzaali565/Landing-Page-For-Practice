@@ -6,7 +6,7 @@ const Header = () => {
       <div className="mt-1">
         <img src={TCLogo} alt="" className="w-40 h-auto " />
       </div>
-      <div>
+      <div className="hidden md:block">
         <p>
           <span className="font-bold mr-3">TEL:</span> 01768 210 800
         </p>
