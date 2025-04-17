@@ -1,7 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
+import { url } from "../constants/constant";
 
 const View = () => {
+  const [listData, setListData] = useState([]);
+  const [copyListData, setCopyListData] = useState([]);
+  useEffect(() => {
+    getData();
+  }, []);
+  const getData = async () => {
+    try {
+      const response = await fetch(`${url}/list`);
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      const data = await response.json();
+      console.log(data);
+      setListData(data?.data);
+      setCopyListData(data?.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const filter_name = (value) => {
+    const searchTerm = value.toLowerCase();
+    if (value === "") {
+      getData();
+      return;
+    }
+    const filterData = listData.filter((items) =>
+      Object.values(items).some(
+        (values) =>
+          typeof values === "string" &&
+          values.toLowerCase().includes(searchTerm)
+      )
+    );
+    if (filterData.length <= 0) {
+      setListData(copyListData);
+      return;
+    }
+    setListData(filterData);
+  };
   return (
     <div>
       <Header />
@@ -15,6 +55,7 @@ const View = () => {
           name=""
           placeholder="Search..."
           id=""
+          onChange={(e) => filter_name(e.target.value)}
         />
       </div>
       <div className="border-2 flex font-bold text-lg item-center bg-[#F4F4F4] mt-4">
@@ -26,15 +67,31 @@ const View = () => {
         <p className="border-r-2 p-2 w-[7.5%] text-center">Free Stock</p>
         <p className="border-r-2 p-2 w-[30%] text-center">Printer Models</p>
       </div>
-      <div className="border-2 border-t-0 flex text-lg item-center ">
-        <p className="border-r-2 p-2 w-[10%] text-center">Code</p>
-        <p className="border-r-2 p-2 w-[20%] text-center">Name</p>
-        <p className="border-r-2 p-2 w-[10%] text-center">Manufacturer</p>
-        <p className="border-r-2 p-2 w-[15%] text-center">Part Number</p>
-        <p className="border-r-2 p-2 w-[7.5%] text-center">Sales Price</p>
-        <p className="border-r-2 p-2 w-[7.5%] text-center">Free Stock</p>
-        <p className="border-r-2 p-2 w-[30%] text-center">Printer Models</p>
-      </div>
+      {listData.length !== 0 &&
+        listData.map((items, index) => (
+          <div
+            className="border-2 border-t-0 flex text-lg item-center "
+            key={index}
+          >
+            <p className="border-r-2 p-2 w-[10%] text-center">{items?.code}</p>
+            <p className="border-r-2 p-2 w-[20%] text-center">{items?.name}</p>
+            <p className="border-r-2 p-2 w-[10%] text-center">
+              {items?.manufacturer}
+            </p>
+            <p className="border-r-2 p-2 w-[15%] text-center">
+              {items?.part_number}
+            </p>
+            <p className="border-r-2 p-2 w-[7.5%] text-center">
+              {items?.sales_price}
+            </p>
+            <p className="border-r-2 p-2 w-[7.5%] text-center">
+              {items?.free_stock}
+            </p>
+            <p className="border-r-2 p-2 w-[30%] text-center">
+              {items?.printer_model}
+            </p>
+          </div>
+        ))}
     </div>
   );
 };
