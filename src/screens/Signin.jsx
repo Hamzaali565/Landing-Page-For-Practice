@@ -1,9 +1,39 @@
 // src/Signup.jsx
-import React from "react";
+import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { toast } from "react-toastify";
+import { url } from "../constants/constant";
 
 const Signin = () => {
+  const [userDetail, setUserDetail] = useState({
+    email: "",
+    password: "",
+  });
+  const handleInput = (key, value) => {
+    setUserDetail((prev) => ({ ...prev, [key]: value }));
+  };
+  const login_user = async () => {
+    if (![userDetail.email, userDetail.password].every(Boolean)) {
+      toast.error("All Fields are required");
+      return;
+    }
+    try {
+      const response = await fetch(`${url}/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...userDetail }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        toast.error(data?.message);
+        return;
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Internet Error / Server Error");
+    }
+  };
   return (
     <div>
       <Header />

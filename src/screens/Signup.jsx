@@ -1,9 +1,57 @@
 // src/Signup.jsx
-import React from "react";
+import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-
+import { url } from "../constants/constant";
+import { toast } from "react-toastify";
 const Signup = () => {
+  const [userDetail, setUserDetail] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+
+  const handleInput = (key, value) => {
+    setUserDetail((prev) => ({ ...prev, [key]: value }));
+    console.log(userDetail);
+  };
+
+  const signup_user = async (e) => {
+    e.preventDefault();
+    if (
+      ![userDetail?.username, userDetail.password, userDetail.email].every(
+        Boolean
+      )
+    ) {
+      toast.error("All fields are required !!!");
+      return;
+    }
+    try {
+      const response = await fetch(`${url}/signup`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...userDetail }),
+      });
+      const data = await response.json();
+
+      if (!response.ok) {
+        // console.log(data?.message);
+        toast.error(data?.message);
+        return;
+      }
+      toast.success("User created successfully");
+      //   response = response.json();
+      //   console.log(response);
+      setUserDetail(() => ({
+        username: "",
+        email: "",
+        password: "",
+      }));
+    } catch (error) {
+      console.log(error);
+      toast.error("Internal server error or internet error");
+    }
+  };
   return (
     <div>
       <Header />
@@ -12,7 +60,7 @@ const Signup = () => {
           <h2 className="text-2xl font-bold text-center mb-6">
             Create an Account
           </h2>
-          <form>
+          <form onSubmit={signup_user}>
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
@@ -25,7 +73,8 @@ const Signup = () => {
                 id="name"
                 type="text"
                 placeholder="Your Name"
-                required
+                value={userDetail?.username}
+                onChange={(e) => handleInput("username", e.target.value)}
               />
             </div>
             <div className="mb-4">
@@ -41,6 +90,8 @@ const Signup = () => {
                 type="email"
                 placeholder="Your Email"
                 required
+                value={userDetail?.email}
+                onChange={(e) => handleInput("email", e.target.value)}
               />
             </div>
             <div className="mb-6">
@@ -56,6 +107,8 @@ const Signup = () => {
                 type="password"
                 placeholder="Your Password"
                 required
+                value={userDetail?.password}
+                onChange={(e) => handleInput("password", e.target.value)}
               />
             </div>
             <div className="flex items-center justify-center">
