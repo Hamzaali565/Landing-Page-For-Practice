@@ -5,19 +5,12 @@ import Footer from "../components/Footer";
 import { toast } from "react-toastify";
 import { url } from "../constants/constant";
 import useUserStore from "../store/zustand";
+import { useNavigate } from "react-router-dom";
 
 const Signin = () => {
-  const {
-    username,
-    setUsername,
-    email,
-    setEmail,
-    setRole,
-    role,
-    login_check,
-    setLoginCheck,
-  } = useUserStore();
-  console.log({ username, email, role, login_check });
+  const { setUsername, setEmail, setRole, setLoginCheck } = useUserStore();
+
+  const navigate = useNavigate();
 
   const [userDetail, setUserDetail] = useState({
     email: "",
@@ -39,7 +32,6 @@ const Signin = () => {
         body: JSON.stringify({ ...userDetail }),
       });
       const data = await response.json();
-      console.log(data);
 
       if (!response.ok) {
         toast.error(data?.message);
@@ -49,6 +41,7 @@ const Signin = () => {
       setUsername(data?.data?.username);
       setRole(data?.data?.role);
       setLoginCheck(true);
+      navigate("/");
     } catch (error) {
       console.error(error);
       toast.error("Internet Error / Server Error");

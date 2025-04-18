@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import { url } from "../constants/constant";
+import useUserStore from "../store/zustand";
 
 const View = () => {
   const [listData, setListData] = useState([]);
   const [copyListData, setCopyListData] = useState([]);
+  const { login_check } = useUserStore();
   useEffect(() => {
     getData();
   }, []);
@@ -15,7 +17,6 @@ const View = () => {
         throw new Error(response.statusText);
       }
       const data = await response.json();
-      console.log(data);
       setListData(data?.data);
       setCopyListData(data?.data);
     } catch (error) {
@@ -71,10 +72,16 @@ const View = () => {
         <p className="border-r-2 p-2 w-[15%] text-center hidden md:block">
           Part Number
         </p>
-        <p className="border-r-2 p-2 w-[25%] md: lg:w-[7.5%] text-center ">
-          Sales Price
-        </p>
-        <p className="border-r-2 p-2 w-[25%] md: lg:w-[7.5%] text-center">
+        {login_check && (
+          <p className="border-r-2 p-2 w-[25%] md: lg:w-[7.5%] text-center ">
+            Sales Price
+          </p>
+        )}
+        <p
+          className={`border-r-2 p-2 w-[25%] ${
+            login_check ? "lg:w-[7.5%]" : "lg:w-[15%]"
+          }  md: text-center`}
+        >
           Free Stock
         </p>
         <p className="border-r-2 p-2 w-[30%] text-center hidden lg:block">
@@ -99,10 +106,16 @@ const View = () => {
             <p className="border-r-2 p-2 w-[15%] text-center hidden md:block">
               {items?.part_number}
             </p>
-            <p className="border-r-2 p-2 w-[25%] md: lg:w-[7.5%] text-center">
-              {items?.sales_price}
-            </p>
-            <p className="border-r-2 p-2 w-[25%] md: lg:w-[7.5%] text-center">
+            {login_check && (
+              <p className="border-r-2 p-2 w-[25%] md: lg:w-[7.5%] text-center">
+                {items?.sales_price}
+              </p>
+            )}
+            <p
+              className={`border-r-2 p-2 w-[25%] ${
+                login_check ? "lg:w-[7.5%]" : "lg:w-[15%]"
+              } md: text-center`}
+            >
               {items?.free_stock}
             </p>
             <p className="border-r-2 p-2 w-[30%] text-center hidden lg:block">

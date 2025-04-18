@@ -13,7 +13,6 @@ const Signup = () => {
 
   const handleInput = (key, value) => {
     setUserDetail((prev) => ({ ...prev, [key]: value }));
-    console.log(userDetail);
   };
 
   const signup_user = async (e) => {
@@ -35,13 +34,10 @@ const Signup = () => {
       const data = await response.json();
 
       if (!response.ok) {
-        // console.log(data?.message);
         toast.error(data?.message);
         return;
       }
       toast.success("User created successfully");
-      //   response = response.json();
-      //   console.log(response);
       setUserDetail(() => ({
         username: "",
         email: "",

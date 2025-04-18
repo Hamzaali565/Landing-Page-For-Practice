@@ -22,6 +22,7 @@ function App() {
             <Route path="*" element={<Navigate to="/" replace />} />
             <Route path="/" element={<New2 />} />
             <Route path="/login" element={<Signin />} />
+            <Route path="/view" element={<View />} />
           </Routes>
         ) : login_check && role === "admin" ? (
           <Routes>

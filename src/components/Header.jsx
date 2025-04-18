@@ -2,11 +2,37 @@ import React, { useState, useMemo } from "react";
 import { Menu, X } from "lucide-react";
 import useUserStore from "../store/zustand";
 import { useNavigate } from "react-router-dom";
-
+import { toast } from "react-toastify";
+import { url } from "../constants/constant";
+import logo from "./images/TC-logo.png";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { login_check, role } = useUserStore();
+  const { login_check, role, setEmail, setUsername, setLoginCheck, setRole } =
+    useUserStore();
   const navigate = useNavigate();
+  const logout = async () => {
+    try {
+      const response = await fetch(`${url}/logout`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        toast.error(data?.message);
+      }
+      toast.success("Logout Successfully ❤");
+      navigate("/");
+      setEmail(null);
+      setUsername(null);
+      setLoginCheck(null);
+      setRole(null);
+    } catch (error) {
+      console.log(error);
+      toast.error("Internet / Server error ☹");
+    }
+  };
   const navLinks = useMemo(() => {
     if (login_check && role === "admin") {
       return ["Home", "View", "Create User", "Logout"];
@@ -26,8 +52,12 @@ const Header = () => {
     } else if (link === "Create User") {
       navigate("/create-user");
       return;
+    } else if (link === "Login") {
+      navigate("/login");
+      return;
     } else if (link === "Logout") {
       // call logout function
+      logout();
       return;
     }
   };
@@ -35,7 +65,9 @@ const Header = () => {
     <header className="w-full bg-white shadow-md">
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
-        <div className="text-2xl font-bold text-blue-600">MyLogo</div>
+        <div>
+          <img src={logo} alt="" className="w-32" />
+        </div>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex space-x-6">
