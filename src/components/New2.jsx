@@ -17,11 +17,12 @@ import {
   TaskAlt,
   Twitter,
 } from "@mui/icons-material";
+import Header from "./Header";
 
 const New2 = () => {
   return (
     <Box>
-      <Box className="headContainer">
+      {/* <Box className="headContainer">
         <Typography
           variant="h6"
           className="headText"
@@ -39,8 +40,8 @@ const New2 = () => {
         >
           Sign In
         </Button>
-      </Box>
-
+      </Box> */}
+      <Header />
       <Box className="signupData">
         <h1 className="signupText">
           Build a landing page for your buisness

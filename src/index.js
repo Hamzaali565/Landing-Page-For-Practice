@@ -4,15 +4,19 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./global.css";
 import { Bounce, ToastContainer } from "react-toastify";
+import { BrowserRouter } from "react-router-dom";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <ToastContainer
-      pauseOnFocusLoss={false}
-      position="bottom-right"
-      transition={Bounce}
-      autoClose={2000}
-    />
+    <BrowserRouter>
+      <ToastContainer
+        pauseOnFocusLoss={false}
+        position="bottom-right"
+        transition={Bounce}
+        autoClose={2000}
+      />
+    </BrowserRouter>
     <App />
   </React.StrictMode>
 );
