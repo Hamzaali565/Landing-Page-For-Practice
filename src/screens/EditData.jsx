@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Header from "../components/Header";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 import { url } from "../constants/constant";
@@ -117,7 +116,6 @@ const EditData = () => {
   };
   return (
     <div>
-      <Header />
       <div className="text-3xl font-bold text-center mt-4 underline">
         UPDATE LIST
       </div>

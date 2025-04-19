@@ -17,7 +17,7 @@ const useUserStore = create(
       setRole: (role) => set({ role: role }),
       clearRole: () => set({ role: null }),
       // login_check
-      login_check: false,
+      login_check: null,
       setLoginCheck: (login_check) => set({ login_check: login_check }),
       clearLoginCheck: () => set({ login_check: null }),
       hasHydrated: false,

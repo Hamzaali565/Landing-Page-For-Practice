@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Header from "../components/Header";
 import { url } from "../constants/constant";
 import useUserStore from "../store/zustand";
 import NewFooter from "../components/NewFooter";
@@ -46,7 +45,6 @@ const View = () => {
   };
   return (
     <div>
-      <Header />
       <p className="text-center text-lg md:text-3xl mt-4 font-bold ">
         Search Consumables Product List
       </p>

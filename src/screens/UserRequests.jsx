@@ -6,7 +6,6 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import Header from "../components/Header";
 
 export default function UserRequestsTable() {
   // Sample user request data
@@ -85,7 +84,6 @@ export default function UserRequestsTable() {
 
   return (
     <div className="bg-white rounded-lg shadow-lg p-6 mx-auto">
-      <Header />
       <h2 className="text-2xl font-bold text-gray-800 mb-6">User Requests</h2>
 
       {/* Search and filters */}

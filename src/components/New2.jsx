@@ -7,7 +7,6 @@ import working from "./images/Working.jpg";
 import tonners from "./images/tonners.jpg";
 import printer from "./images/printer-print.jpg";
 import { Grid4x4, TaskAlt } from "@mui/icons-material";
-import Header from "./Header";
 import Testimonal from "./Testimonal";
 import LogoSlider from "./LogoSlider";
 import NewFooter from "./NewFooter";
@@ -34,7 +33,6 @@ const New2 = () => {
           Sign In
         </Button>
       </Box> */}
-      <Header />
       <Box className="signupData">
         <h1 className="signupText">
           European Office Supplies Ltd.

@@ -1,6 +1,5 @@
 // src/Signup.jsx
 import React, { useState } from "react";
-import Header from "../components/Header";
 import { toast } from "react-toastify";
 import { url } from "../constants/constant";
 import useUserStore from "../store/zustand";
@@ -54,7 +53,6 @@ const Signin = () => {
   };
   return (
     <div>
-      <Header />
       <div className="bg-gray-100 flex items-center justify-center min-h-screen">
         <div className="bg-white rounded-lg shadow-lg p-8 max-w-md w-full">
           <h2 className="text-2xl font-bold text-center mb-6">
