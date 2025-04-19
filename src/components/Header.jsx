@@ -4,7 +4,7 @@ import useUserStore from "../store/zustand";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { url } from "../constants/constant";
-import logo from "./images/TC-logo.png";
+import logo from "./images/EOS_Logo.jpg";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { login_check, role, setEmail, setUsername, setLoginCheck, setRole } =
@@ -35,7 +35,7 @@ const Header = () => {
   };
   const navLinks = useMemo(() => {
     if (login_check && role === "admin") {
-      return ["Home", "View", "Create User", "Logout"];
+      return ["Home", "View", "Create User", "Edit", "Logout"];
     }
     if (login_check && role === "user") {
       return ["Home", "View", "Logout"];
@@ -52,6 +52,9 @@ const Header = () => {
     } else if (link === "Create User") {
       navigate("/create-user");
       return;
+    } else if (link === "Edit") {
+      navigate("/edit-data");
+      return;
     } else if (link === "Login") {
       navigate("/login");
       return;
@@ -66,7 +69,7 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
         <div>
-          <img src={logo} alt="" className="w-32" />
+          <img src={logo} alt="" className="w-24" />
         </div>
 
         {/* Desktop Nav */}
