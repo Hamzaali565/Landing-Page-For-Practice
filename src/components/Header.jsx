@@ -35,12 +35,12 @@ const Header = () => {
   };
   const navLinks = useMemo(() => {
     if (login_check && role === "admin") {
-      return ["Home", "View", "Create User", "Edit", "Logout"];
+      return ["Home", "View", "User Requests", "Edit", "Logout"];
     }
     if (login_check && role === "user") {
       return ["Home", "View", "Logout"];
     }
-    return ["Home", "View", "Login"];
+    return ["Home", "View", "Login", "SignUp"];
   }, [login_check, role]);
   const navigateRoute = (link) => {
     if (link === "Home") {
@@ -49,14 +49,17 @@ const Header = () => {
     } else if (link === "View") {
       navigate("/view");
       return;
-    } else if (link === "Create User") {
-      navigate("/create-user");
+    } else if (link === "User Requests") {
+      navigate("/user-request");
       return;
     } else if (link === "Edit") {
       navigate("/edit-data");
       return;
     } else if (link === "Login") {
       navigate("/login");
+      return;
+    } else if (link === "SignUp") {
+      navigate("/create-user");
       return;
     } else if (link === "Logout") {
       // call logout function

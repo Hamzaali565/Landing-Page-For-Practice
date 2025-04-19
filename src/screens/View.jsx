@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import { url } from "../constants/constant";
 import useUserStore from "../store/zustand";
+import NewFooter from "../components/NewFooter";
 
 const View = () => {
   const [listData, setListData] = useState([]);
@@ -27,7 +28,7 @@ const View = () => {
   const filter_name = (value) => {
     const searchTerm = value.toLowerCase();
     if (value === "") {
-      getData();
+      setListData(copyListData);
       return;
     }
     const filterData = listData.filter((items) =>
@@ -59,35 +60,38 @@ const View = () => {
           onChange={(e) => filter_name(e.target.value)}
         />
       </div>
-      <div className="border-2 flex font-bold text-xs md:text-sm lg:text-lg item-center bg-[#F4F4F4] mt-4">
-        <p className="border-r-2 p-2 w-[25%] md: lg:w-[10%] text-center">
-          Code
-        </p>
-        <p className="border-r-2 p-2 w-[25%] md: lg:w-[20%] text-center">
-          Name
-        </p>
-        <p className="border-r-2 p-2 w-[10%] text-center hidden lg:block">
-          Manufacturer
-        </p>
-        <p className="border-r-2 p-2 w-[15%] text-center hidden md:block">
-          Part Number
-        </p>
-        {login_check && (
-          <p className="border-r-2 p-2 w-[25%] md: lg:w-[7.5%] text-center ">
-            Sales Price
+      {listData.length !== 0 && (
+        <div className="border-2 flex font-bold text-xs md:text-sm lg:text-lg item-center bg-[#F4F4F4] mt-4">
+          <p className="border-r-2 p-2 w-[25%] md: lg:w-[10%] text-center">
+            Code
           </p>
-        )}
-        <p
-          className={`border-r-2 p-2 w-[25%] ${
-            login_check ? "lg:w-[7.5%]" : "lg:w-[15%]"
-          }  md: text-center`}
-        >
-          Free Stock
-        </p>
-        <p className="border-r-2 p-2 w-[30%] text-center hidden lg:block">
-          Printer Models
-        </p>
-      </div>
+          <p className="border-r-2 p-2 w-[25%] md: lg:w-[20%] text-center">
+            Name
+          </p>
+          <p className="border-r-2 p-2 w-[10%] text-center hidden lg:block">
+            Manufacturer
+          </p>
+          <p className="border-r-2 p-2 w-[15%] text-center hidden md:block">
+            Part Number
+          </p>
+          {login_check && (
+            <p className="border-r-2 p-2 w-[25%] md: lg:w-[7.5%] text-center ">
+              Sales Price
+            </p>
+          )}
+          <p
+            className={`border-r-2 p-2 w-[25%] ${
+              login_check ? "lg:w-[7.5%]" : "lg:w-[15%]"
+            }  md: text-center`}
+          >
+            Free Stock
+          </p>
+          <p className="border-r-2 p-2 w-[30%] text-center hidden lg:block">
+            Printer Models
+          </p>
+        </div>
+      )}
+
       {listData.length !== 0 &&
         listData.map((items, index) => (
           <div
@@ -123,6 +127,9 @@ const View = () => {
             </p>
           </div>
         ))}
+      <div className="mt-4">
+        <NewFooter />
+      </div>
     </div>
   );
 };

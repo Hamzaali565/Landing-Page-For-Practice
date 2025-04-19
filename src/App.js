@@ -10,6 +10,7 @@ import {
   Routes,
   BrowserRouter as Router,
 } from "react-router-dom";
+import UserRequestsTable from "./screens/UserRequests";
 
 function App() {
   const { login_check, role } = useUserStore();
@@ -22,6 +23,7 @@ function App() {
             <Route path="*" element={<Navigate to="/" replace />} />
             <Route path="/" element={<New2 />} />
             <Route path="/login" element={<Signin />} />
+            <Route path="/create-user" element={<Signup />} />
             <Route path="/view" element={<View />} />
           </Routes>
         ) : login_check && role === "admin" ? (
@@ -29,7 +31,7 @@ function App() {
             <Route path="/" element={<New2 />} />
             <Route path="/edit-data" element={<EditData />} />
             <Route path="/view" element={<View />} />
-            <Route path="/create-user" element={<Signup />} />
+            <Route path="/user-request" element={<UserRequestsTable />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         ) : login_check && role === "user" ? (

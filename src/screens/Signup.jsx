@@ -1,15 +1,17 @@
 // src/Signup.jsx
 import React, { useState } from "react";
 import Header from "../components/Header";
-import Footer from "../components/Footer";
 import { url } from "../constants/constant";
 import { toast } from "react-toastify";
+import { TbLoader2 } from "react-icons/tb";
+import NewFooter from "../components/NewFooter";
 const Signup = () => {
   const [userDetail, setUserDetail] = useState({
     username: "",
     email: "",
     password: "",
   });
+  const [loading, setloading] = useState(false);
 
   const handleInput = (key, value) => {
     setUserDetail((prev) => ({ ...prev, [key]: value }));
@@ -26,6 +28,7 @@ const Signup = () => {
       return;
     }
     try {
+      setloading(true);
       const response = await fetch(`${url}/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -46,6 +49,8 @@ const Signup = () => {
     } catch (error) {
       console.log(error);
       toast.error("Internal server error or internet error");
+    } finally {
+      setloading(false);
     }
   };
   return (
@@ -109,10 +114,16 @@ const Signup = () => {
             </div>
             <div className="flex items-center justify-center">
               <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="submit"
+                disabled={loading}
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline inline-flex items-center justify-center gap-5"
               >
-                Sign Up
+                SignUp{" "}
+                {loading && (
+                  <span>
+                    <TbLoader2 className="text-yellow-400 animate-spin" />
+                  </span>
+                )}
               </button>
             </div>
           </form>
@@ -122,7 +133,7 @@ const Signup = () => {
           </p>
         </div>
       </div>
-      <Footer />
+      <NewFooter />
     </div>
   );
 };

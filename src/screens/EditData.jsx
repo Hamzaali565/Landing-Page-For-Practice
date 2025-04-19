@@ -3,9 +3,17 @@ import Header from "../components/Header";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 import { url } from "../constants/constant";
+import NewFooter from "../components/NewFooter";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { TbLoader2 } from "react-icons/tb";
 const EditData = () => {
   const [allData, setAllData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [loadingExcel, setLoadingExcel] = useState(false);
+  const navigate = useNavigate();
   const getData = async () => {
+    setLoadingExcel(true);
     try {
       const response = await fetch(`${url}/list`);
       if (!response.ok) {
@@ -14,7 +22,10 @@ const EditData = () => {
       const data = await response.json();
       downloadExcelFile(data?.data);
       console.log(data?.data);
+      setLoadingExcel(false);
     } catch (error) {
+      setLoadingExcel(false);
+      toast.error("Internet / Server Error");
       console.log(error);
     }
   };
@@ -74,6 +85,11 @@ const EditData = () => {
     }
   };
   const saveData = async () => {
+    if (allData.length === 0) {
+      toast.error("No data to save.");
+      return;
+    }
+    setLoading(true);
     try {
       const response = await fetch(`${url}/list`, {
         method: "PUT",
@@ -83,12 +99,20 @@ const EditData = () => {
         },
         body: JSON.stringify({ data: allData }),
       });
+      const result = await response.json();
       if (!response?.ok) {
-        throw new Error(response.statusText);
+        toast.error(result?.message);
+        setLoading(false);
+        return;
       }
-      console.log(await response.json());
+      toast.success("Data saved successfully ☺");
+      setAllData([]);
+      navigate("/");
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      toast.error("Internet / Server error");
+      setLoading(false);
     }
   };
   return (
@@ -97,12 +121,19 @@ const EditData = () => {
       <div className="text-3xl font-bold text-center mt-4 underline">
         UPDATE LIST
       </div>
-      <div className="flex justify-center items-center mt-4 flex-col space-y-4">
+      <div className="flex justify-center items-center my-4 flex-col space-y-4">
         <button
           onClick={getData}
-          className="border-2 p-2 rounded-lg bg-gray-500 text-white font-bold"
+          type="submit"
+          disabled={loadingExcel}
+          className="border-2 p-2 px-4 rounded-lg bg-gray-500 text-white font-bold inline-flex items-center justify-center gap-2"
         >
-          Download Excel
+          Download Excel{" "}
+          {loadingExcel && (
+            <span>
+              <TbLoader2 className="text-yellow-400 animate-spin" />
+            </span>
+          )}
         </button>
         <div className="w-full max-w-md">
           <label
@@ -133,36 +164,51 @@ const EditData = () => {
             />
           </label>
         </div>
-        <button
+        {/* <button
           onClick={saveData}
           className="border-2 p-2 px-4 rounded-lg bg-gray-500 text-white font-bold"
-        >
+          >
           Save
+        </button> */}
+        <button
+          onClick={saveData}
+          type="submit"
+          disabled={loading}
+          className="border-2 p-2 px-4 rounded-lg bg-gray-500 text-white font-bold inline-flex items-center justify-center gap-2"
+        >
+          Save{" "}
+          {loading && (
+            <span>
+              <TbLoader2 className="text-yellow-400 animate-spin" />
+            </span>
+          )}
         </button>
       </div>
-      <div className="border-2 flex font-bold text-xs md:text-sm lg:text-lg item-center bg-[#F4F4F4] mt-4">
-        <p className="border-r-2 p-2 w-[25%] md: lg:w-[10%] text-center">
-          Code
-        </p>
-        <p className="border-r-2 p-2 w-[25%] md: lg:w-[20%] text-center">
-          Name
-        </p>
-        <p className="border-r-2 p-2 w-[10%] text-center hidden lg:block">
-          Manufacturer
-        </p>
-        <p className="border-r-2 p-2 w-[15%] text-center hidden md:block">
-          Part Number
-        </p>
-        <p className="border-r-2 p-2 w-[25%] md: lg:w-[7.5%] text-center ">
-          Sales Price
-        </p>
-        <p className="border-r-2 p-2 w-[25%] md: lg:w-[7.5%] text-center">
-          Free Stock
-        </p>
-        <p className="border-r-2 p-2 w-[30%] text-center hidden lg:block">
-          Printer Models
-        </p>
-      </div>
+      {allData.length !== 0 && (
+        <div className="border-2 flex font-bold text-xs md:text-sm lg:text-lg item-center bg-[#F4F4F4] mt-4">
+          <p className="border-r-2 p-2 w-[25%] md: lg:w-[10%] text-center">
+            Code
+          </p>
+          <p className="border-r-2 p-2 w-[25%] md: lg:w-[20%] text-center">
+            Name
+          </p>
+          <p className="border-r-2 p-2 w-[10%] text-center hidden lg:block">
+            Manufacturer
+          </p>
+          <p className="border-r-2 p-2 w-[15%] text-center hidden md:block">
+            Part Number
+          </p>
+          <p className="border-r-2 p-2 w-[25%] md: lg:w-[7.5%] text-center ">
+            Sales Price
+          </p>
+          <p className="border-r-2 p-2 w-[25%] md: lg:w-[7.5%] text-center">
+            Free Stock
+          </p>
+          <p className="border-r-2 p-2 w-[30%] text-center hidden lg:block">
+            Printer Models
+          </p>
+        </div>
+      )}
       {allData.length !== 0 &&
         allData.map((items, index) => (
           <div
@@ -193,6 +239,9 @@ const EditData = () => {
             </p>
           </div>
         ))}
+      <div className="mt-4">
+        <NewFooter />
+      </div>
     </div>
   );
 };

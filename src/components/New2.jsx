@@ -6,13 +6,7 @@ import TvIcon from "@mui/icons-material/Tv";
 import working from "./images/Working.jpg";
 import tonners from "./images/tonners.jpg";
 import printer from "./images/printer-print.jpg";
-import {
-  Facebook,
-  Grid4x4,
-  Instagram,
-  TaskAlt,
-  Twitter,
-} from "@mui/icons-material";
+import { Grid4x4, TaskAlt } from "@mui/icons-material";
 import Header from "./Header";
 import Testimonal from "./Testimonal";
 import LogoSlider from "./LogoSlider";

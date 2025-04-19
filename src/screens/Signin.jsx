@@ -1,15 +1,16 @@
 // src/Signup.jsx
 import React, { useState } from "react";
 import Header from "../components/Header";
-import Footer from "../components/Footer";
 import { toast } from "react-toastify";
 import { url } from "../constants/constant";
 import useUserStore from "../store/zustand";
 import { useNavigate } from "react-router-dom";
+import { TbLoader2 } from "react-icons/tb";
+import NewFooter from "../components/NewFooter";
 
 const Signin = () => {
   const { setUsername, setEmail, setRole, setLoginCheck } = useUserStore();
-
+  const [loading, setloading] = useState(false);
   const navigate = useNavigate();
 
   const [userDetail, setUserDetail] = useState({
@@ -26,6 +27,7 @@ const Signin = () => {
       return;
     }
     try {
+      setloading(true);
       const response = await fetch(`${url}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -35,6 +37,7 @@ const Signin = () => {
 
       if (!response.ok) {
         toast.error(data?.message);
+        setloading(false);
         return;
       }
       setEmail(data?.data?.email);
@@ -42,8 +45,10 @@ const Signin = () => {
       setRole(data?.data?.role);
       setLoginCheck(true);
       navigate("/");
+      setloading(false);
     } catch (error) {
       console.error(error);
+      setloading(false);
       toast.error("Internet Error / Server Error");
     }
   };
@@ -92,10 +97,16 @@ const Signin = () => {
             </div>
             <div className="flex items-center justify-center">
               <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="submit"
+                disabled={loading}
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline inline-flex items-center justify-center gap-2"
               >
-                Sign Up
+                Login{" "}
+                {loading && (
+                  <span>
+                    <TbLoader2 className="text-yellow-400 animate-spin" />
+                  </span>
+                )}
               </button>
             </div>
           </form>
@@ -105,7 +116,7 @@ const Signin = () => {
           </p>
         </div>
       </div>
-      <Footer />
+      <NewFooter />
     </div>
   );
 };
