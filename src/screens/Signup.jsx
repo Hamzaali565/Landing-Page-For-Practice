@@ -40,7 +40,8 @@ const Signup = () => {
         toast.error(data?.message);
         return;
       }
-      toast.success("User created successfully");
+      // toast.success("User created successfully");
+      toast.success("Request pending for verification");
       setUserDetail(() => ({
         username: "",
         email: "",

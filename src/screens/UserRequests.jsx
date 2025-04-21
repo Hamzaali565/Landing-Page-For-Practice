@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   CheckCircle,
   Clock,
@@ -6,71 +6,68 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
+import { url } from "../constants/constant";
+import { toast } from "react-toastify";
+import { TbLoader2 } from "react-icons/tb";
 
 export default function UserRequestsTable() {
   // Sample user request data
-  const [requests, setRequests] = useState([
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.smith@example.com",
-      status: "pending",
-      date: "2025-04-15",
-      type: "Account Access",
-    },
-    {
-      id: 2,
-      name: "Sarah Johnson",
-      email: "sarah.j@company.org",
-      status: "pending",
-      date: "2025-04-16",
-      type: "Password Reset",
-    },
-    {
-      id: 3,
-      name: "Michael Chen",
-      email: "mchen@gmail.com",
-      status: "pending",
-      date: "2025-04-17",
-      type: "Data Export",
-    },
-    {
-      id: 4,
-      name: "Aisha Patel",
-      email: "a.patel@outlook.com",
-      status: "pending",
-      date: "2025-04-17",
-      type: "Feature Access",
-    },
-    {
-      id: 5,
-      name: "Carlos Rodriguez",
-      email: "c.rodriguez@example.com",
-      status: "pending",
-      date: "2025-04-18",
-      type: "Technical Support",
-    },
-  ]);
+  const [requests, setRequests] = useState([]);
+  const [toggle, setToggle] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [currentId, setCurrentId] = useState(0);
+  useEffect(() => {
+    req_users();
+  }, [toggle]);
+  const req_users = async () => {
+    try {
+      const response = await fetch(`${url}/in_active_users`);
+      const data = await response.json();
+      if (!response.ok) {
+        toast.error(data.message);
+      }
+      setRequests(data?.data);
+    } catch (error) {
+      console.log("error=>", error);
+    }
+  };
 
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
 
-  // Function to handle acknowledging a request
-  const acknowledgeRequest = (id) => {
-    setRequests(
-      requests.map((request) =>
-        request.id === id ? { ...request, status: "acknowledged" } : request
-      )
-    );
+  const acknowledgeRequest = async (id) => {
+    try {
+      setLoading(true);
+      setCurrentId(id);
+      const response = await fetch(`${url}/acknowledge_user`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ _id: id }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        toast.error(data.message);
+        return;
+      }
+      toast.success("Request acknowledged successfully!");
+      setToggle(!toggle);
+    } catch (error) {
+      console.log("Error acknowledging request:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   // Filter requests based on search term
   const filteredRequests = requests.filter(
     (request) =>
-      request.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      request.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      request.type.toLowerCase().includes(searchTerm.toLowerCase())
+      request.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      request.email.toLowerCase().includes(searchTerm.toLowerCase())
+    // ||
+    // request.type.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   // Calculate pagination
@@ -130,16 +127,15 @@ export default function UserRequestsTable() {
               currentItems.map((request) => (
                 <tr key={request.id} className="hover:bg-gray-50">
                   <td className="py-4 px-6 text-sm font-medium text-gray-900">
-                    {request.name}
+                    {request?.username}
                   </td>
                   <td className="py-4 px-6 text-sm text-gray-500">
-                    {request.email}
+                    {request?.email}
                   </td>
+                  <td className="py-4 px-6 text-sm text-gray-500">User</td>
                   <td className="py-4 px-6 text-sm text-gray-500">
-                    {request.type}
-                  </td>
-                  <td className="py-4 px-6 text-sm text-gray-500">
-                    {request.date}
+                    {request?.createdAt &&
+                      new Date(request.createdAt).toLocaleString()}
                   </td>
                   <td className="py-4 px-6 text-sm">
                     {request.status === "acknowledged" ? (
@@ -156,17 +152,20 @@ export default function UserRequestsTable() {
                   </td>
                   <td className="py-4 px-6 text-sm font-medium text-center">
                     <button
-                      onClick={() => acknowledgeRequest(request.id)}
-                      disabled={request.status === "acknowledged"}
+                      onClick={() => acknowledgeRequest(request?._id)}
+                      disabled={loading}
                       className={`px-3 py-1 rounded-md ${
                         request.status === "acknowledged"
                           ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                          : "bg-blue-600 text-white hover:bg-blue-700"
+                          : "bg-[#F50A8B] hover:bg-pink-600 text-white font-bold inline-flex items-center gap-2"
                       } transition-colors duration-200`}
                     >
-                      {request.status === "acknowledged"
-                        ? "Acknowledged"
-                        : "Acknowledge"}
+                      Acknowledge{" "}
+                      {loading && currentId === request?._id && (
+                        <span>
+                          <TbLoader2 className="text-white text-lg animate-spin" />
+                        </span>
+                      )}
                     </button>
                   </td>
                 </tr>
