@@ -15,35 +15,35 @@ import Header from "./components/Header";
 
 function App() {
   const { login_check, role } = useUserStore();
-  console.log(login_check, role);
 
   return (
     <Router>
       <Header />
-
-      {login_check === null ? (
-        <Routes>
-          <Route path="*" element={<Navigate to="/" replace />} />
-          <Route path="/" element={<New2 />} />
-          <Route path="/login" element={<Signin />} />
-          <Route path="/create-user" element={<Signup />} />
-          <Route path="/view" element={<View />} />
-        </Routes>
-      ) : login_check && role === "admin" ? (
-        <Routes>
-          <Route path="/" element={<New2 />} />
-          <Route path="/edit-data" element={<EditData />} />
-          <Route path="/view" element={<View />} />
-          <Route path="/user-request" element={<UserRequestsTable />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      ) : login_check && role === "user" ? (
-        <Routes>
-          <Route path="/" element={<New2 />} />
-          <Route path="/view" element={<View />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      ) : null}
+      <div className="md:pt-20">
+        {login_check === null ? (
+          <Routes>
+            <Route path="*" element={<Navigate to="/" replace />} />
+            <Route path="/" element={<New2 />} />
+            <Route path="/login" element={<Signin />} />
+            <Route path="/create-user" element={<Signup />} />
+            <Route path="/view" element={<View />} />
+          </Routes>
+        ) : login_check && role === "admin" ? (
+          <Routes>
+            <Route path="/" element={<New2 />} />
+            <Route path="/edit-data" element={<EditData />} />
+            <Route path="/view" element={<View />} />
+            <Route path="/user-request" element={<UserRequestsTable />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        ) : login_check && role === "user" ? (
+          <Routes>
+            <Route path="/" element={<New2 />} />
+            <Route path="/view" element={<View />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        ) : null}
+      </div>
     </Router>
   );
 }

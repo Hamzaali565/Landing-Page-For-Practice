@@ -98,6 +98,7 @@ const EditData = () => {
         },
         body: JSON.stringify({ data: allData }),
       });
+
       const result = await response.json();
       if (!response?.ok) {
         toast.error(result?.message);
