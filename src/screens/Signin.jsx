@@ -16,6 +16,7 @@ const Signin = () => {
     email: "",
     password: "",
   });
+
   const handleInput = (key, value) => {
     setUserDetail((prev) => ({ ...prev, [key]: value }));
   };
@@ -97,12 +98,12 @@ const Signin = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline inline-flex items-center justify-center gap-2"
+                className="bg-[#F50A8B] hover:bg-pink-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline inline-flex items-center justify-center gap-2"
               >
                 Login{" "}
                 {loading && (
                   <span>
-                    <TbLoader2 className="text-yellow-400 animate-spin" />
+                    <TbLoader2 className="text-black text-lg animate-spin" />
                   </span>
                 )}
               </button>
@@ -110,7 +111,12 @@ const Signin = () => {
           </form>
           <p className="mt-4 text-center text-gray-600 text-sm">
             Don't have an account?{" "}
-            <span className="text-blue-500 hover:text-blue-700">Sign Up</span>
+            <span
+              className="text-blue-500 hover:text-blue-700 cursor-pointer"
+              onClick={() => navigate("/create-user")}
+            >
+              Sign Up
+            </span>
           </p>
         </div>
       </div>

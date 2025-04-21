@@ -125,7 +125,7 @@ const EditData = () => {
           onClick={getData}
           type="submit"
           disabled={loadingExcel}
-          className="border-2 p-2 px-4 rounded-lg bg-gray-500 text-white font-bold inline-flex items-center justify-center gap-2"
+          className="border-2 p-2 px-4 rounded-lg bg-[#F50A8B] text-white font-bold inline-flex items-center justify-center gap-2"
         >
           Download Excel{" "}
           {loadingExcel && (
@@ -163,17 +163,12 @@ const EditData = () => {
             />
           </label>
         </div>
-        {/* <button
-          onClick={saveData}
-          className="border-2 p-2 px-4 rounded-lg bg-gray-500 text-white font-bold"
-          >
-          Save
-        </button> */}
+
         <button
           onClick={saveData}
           type="submit"
           disabled={loading}
-          className="border-2 p-2 px-4 rounded-lg bg-gray-500 text-white font-bold inline-flex items-center justify-center gap-2"
+          className="border-2 p-2 px-4 rounded-lg bg-[#F50A8B] text-white font-bold inline-flex items-center justify-center gap-2"
         >
           Save{" "}
           {loading && (

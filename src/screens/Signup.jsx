@@ -4,6 +4,7 @@ import { url } from "../constants/constant";
 import { toast } from "react-toastify";
 import { TbLoader2 } from "react-icons/tb";
 import NewFooter from "../components/NewFooter";
+import { useNavigate } from "react-router-dom";
 const Signup = () => {
   const [userDetail, setUserDetail] = useState({
     username: "",
@@ -11,7 +12,7 @@ const Signup = () => {
     password: "",
   });
   const [loading, setloading] = useState(false);
-
+  const navigate = useNavigate();
   const handleInput = (key, value) => {
     setUserDetail((prev) => ({ ...prev, [key]: value }));
   };
@@ -114,7 +115,7 @@ const Signup = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline inline-flex items-center justify-center gap-5"
+                className="bg-[#F50A8B] hover:bg-pink-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline inline-flex items-center justify-center gap-5"
               >
                 SignUp{" "}
                 {loading && (
@@ -127,7 +128,12 @@ const Signup = () => {
           </form>
           <p className="mt-4 text-center text-gray-600 text-sm">
             Already have an account?{" "}
-            <span className="text-blue-500 hover:text-blue-700">Log in</span>
+            <span
+              className="text-blue-500 hover:text-blue-700 cursor-pointer "
+              onClick={() => navigate("/login")}
+            >
+              Log in
+            </span>
           </p>
         </div>
       </div>

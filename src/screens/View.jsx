@@ -9,8 +9,10 @@ const View = () => {
   const [listData, setListData] = useState([]);
   const [copyListData, setCopyListData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [loadingExcel, setLoadingExcel] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedSearchTerm] = useDebounce(searchTerm, 300);
+
   const { login_check } = useUserStore();
   useEffect(() => {
     getData();
@@ -56,7 +58,7 @@ const View = () => {
         <p className="text-center text-lg md:text-3xl mt-4 font-bold ">
           Search Consumables Product List
         </p>
-        <div className="flex justify-center mt-4">
+        <div className="flex justify-center mt-4 gap-4">
           <input
             type="text"
             className="border-2 w-[60%] md:w-[40%] p-2 rounded border-black"
@@ -65,6 +67,21 @@ const View = () => {
             id=""
             onChange={(e) => setSearchTerm(e.target.value)}
           />
+          <div>
+            <button
+              // onClick={getData}
+              type="submit"
+              disabled={loadingExcel}
+              className="border-2 p-2 px-4 rounded-lg bg-[#F50A8B] text-white font-bold inline-flex items-center justify-center gap-2"
+            >
+              Download Excel{" "}
+              {loadingExcel && (
+                <span>
+                  <TbLoader2 className="text-yellow-400 animate-spin" />
+                </span>
+              )}
+            </button>
+          </div>
         </div>
         {loading && (
           <div className="flex justify-center mt-4">

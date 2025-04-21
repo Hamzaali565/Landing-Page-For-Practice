@@ -71,7 +71,7 @@ const Header = () => {
     <header className="w-full bg-white border-b-2 shadow-md md:fixed  md:top-0 md:left-0 md:z-10  md:h-20">
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
-        <div>
+        <div onClick={() => navigate("/")} className="cursor-pointer">
           <img src={logo} alt="" className="w-24" />
         </div>
 
