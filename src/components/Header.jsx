@@ -35,24 +35,30 @@ const Header = () => {
   };
   const navLinks = useMemo(() => {
     if (login_check && role === "admin") {
-      return ["Home", "View", "User Requests", "Edit", "Logout"];
+      return [
+        "Home",
+        "Product List",
+        "User Requests",
+        "Price Update",
+        "Logout",
+      ];
     }
     if (login_check && role === "user") {
-      return ["Home", "View", "Logout"];
+      return ["Home", "Product List", "Logout"];
     }
-    return ["Home", "View", "Login", "SignUp"];
+    return ["Home", "Product List", "Login", "SignUp"];
   }, [login_check, role]);
   const navigateRoute = (link) => {
     if (link === "Home") {
       navigate("/");
       return;
-    } else if (link === "View") {
+    } else if (link === "Product List") {
       navigate("/view");
       return;
     } else if (link === "User Requests") {
       navigate("/user-request");
       return;
-    } else if (link === "Edit") {
+    } else if (link === "Price Update") {
       navigate("/edit-data");
       return;
     } else if (link === "Login") {

@@ -3,8 +3,8 @@ import React from "react";
 export default function NewFooter() {
   return (
     <footer className="bg-gray-800 text-white">
-      <div className="max-w-6xl mx-auto p-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="w-[80%] mx-auto p-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
           {/* Contact Information */}
           <div className="space-y-4">
             <h3 className="text-lg font-bold border-b border-blue-500 pb-2 inline-block">
@@ -48,7 +48,7 @@ export default function NewFooter() {
           </div>
 
           {/* Quick Links */}
-          <div>
+          {/* <div>
             <h3 className="text-lg font-bold border-b border-blue-500 pb-2 inline-block mb-4">
               QUICK LINKS
             </h3>
@@ -84,10 +84,10 @@ export default function NewFooter() {
                 </p>
               </li>
             </ul>
-          </div>
+          </div> */}
 
           {/* Services */}
-          <div>
+          {/* <div>
             <h3 className="text-lg font-bold border-b border-blue-500 pb-2 inline-block mb-4">
               OUR SERVICES
             </h3>
@@ -119,7 +119,7 @@ export default function NewFooter() {
                 </p>
               </li>
             </ul>
-          </div>
+          </div> */}
 
           {/* Newsletter */}
           <div>
@@ -129,11 +129,11 @@ export default function NewFooter() {
             <p className="text-gray-300 mb-4">
               Subscribe to our newsletter for updates and special offers.
             </p>
-            <div className="space-y-3">
+            <div className="space-y-3 space-x-3">
               <input
                 type="email"
                 placeholder="Your email address"
-                className="w-full px-4 py-2 rounded bg-gray-700 text-white border border-gray-600 focus:outline-none focus:border-blue-500"
+                className="w-[50%] px-4 py-2 rounded bg-gray-700 text-white border border-gray-600 focus:outline-none focus:border-blue-500"
               />
               <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition duration-300">
                 Subscribe

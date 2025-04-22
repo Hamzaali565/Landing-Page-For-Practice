@@ -33,12 +33,15 @@ const New2 = () => {
           Sign In
         </Button>
       </Box> */}
+
       <Box className="signupData">
-        <h1 className="signupText">
+        <h1 className="signupText text-3xl">
           European Office Supplies Ltd.
           <br />
-          EOS is proud to celebrate 14 Years in business supplying printer
-          consumables exclusive to trade.
+          <span className="text-lg">
+            EOS is proud to celebrate 14 Years in business supplying printer
+            consumables exclusive to trade.
+          </span>
         </h1>
         <h1 className="signupText2">European Office Supplies Ltd.</h1>
         <Box className="signupInput">
@@ -64,7 +67,7 @@ const New2 = () => {
       <div className="text-center text-3xl font-bold mt-11 underline heading">
         PRODUCTS AND SERVICES
       </div>
-      <Box className="threeIconsContainer">
+      <Box className="w-[80%] mx-auto lg:flex lg:justify-around lg:py-9">
         {/* 1 icon */}
         <Box>
           <Box className="icons">

@@ -26,9 +26,11 @@ export default function UserRequestsTable() {
       if (!response.ok) {
         toast.error(data.message);
       }
-      setRequests(data?.data);
+      // setRequests(data?.data);
+      setRequests(Array.isArray(data?.data) ? data.data : []);
     } catch (error) {
       console.log("error=>", error);
+      setRequests([]);
     }
   };
 
@@ -60,14 +62,10 @@ export default function UserRequestsTable() {
       setLoading(false);
     }
   };
-
-  // Filter requests based on search term
-  const filteredRequests = requests.filter(
+  const filteredRequests = (requests || []).filter(
     (request) =>
-      request.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      request.email.toLowerCase().includes(searchTerm.toLowerCase())
-    // ||
-    // request.type.toLowerCase().includes(searchTerm.toLowerCase())
+      request.username?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      request.email?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   // Calculate pagination
