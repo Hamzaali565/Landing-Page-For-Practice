@@ -53,7 +53,7 @@ const Header = () => {
       navigate("/");
       return;
     } else if (link === "Product List") {
-      navigate("/view");
+      navigate("/product-list");
       return;
     } else if (link === "User Requests") {
       navigate("/user-request");

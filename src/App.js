@@ -26,20 +26,20 @@ function App() {
             <Route path="/" element={<New2 />} />
             <Route path="/login" element={<Signin />} />
             <Route path="/create-user" element={<Signup />} />
-            <Route path="/view" element={<View />} />
+            <Route path="/product-list" element={<View />} />
           </Routes>
         ) : login_check && role === "admin" ? (
           <Routes>
             <Route path="/" element={<New2 />} />
             <Route path="/edit-data" element={<EditData />} />
-            <Route path="/view" element={<View />} />
+            <Route path="/product-list" element={<View />} />
             <Route path="/user-request" element={<UserRequestsTable />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         ) : login_check && role === "user" ? (
           <Routes>
             <Route path="/" element={<New2 />} />
-            <Route path="/view" element={<View />} />
+            <Route path="/product-list" element={<View />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         ) : null}

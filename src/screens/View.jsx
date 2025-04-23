@@ -91,7 +91,7 @@ const View = () => {
       </div>
       {listData.length !== 0 && (
         <div className="pt-36">
-          <div className="border-2 flex font-bold text-xs md:text-sm lg:text-lg item-center bg-[#F4F4F4] mt-4 ">
+          <div className="border-2 flex font-bold text-xs md:text-sm lg:text-lg item-center bg-[#F4F4F4] mt-4 mx-3">
             <p className="border-r-2 p-2 w-[25%] md: lg:w-[10%] text-center">
               Code
             </p>
@@ -126,19 +126,19 @@ const View = () => {
       {listData.length !== 0 &&
         listData.map((items, index) => (
           <div
-            className="border-2 border-t-0 flex text-xs md:text-sm lg:text-lg item-center "
+            className="border-2 border-t-0 flex text-xs md:text-sm lg:text-sm item-center mx-3"
             key={index}
           >
-            <p className="border-r-2 p-2 w-[25%] md: lg:w-[10%] text-center">
+            <p className="border-r-2 p-2 w-[25%] md: lg:w-[10%] text-left">
               {items?.code}
             </p>
-            <p className="border-r-2 p-2 w-[25%] md: lg:w-[20%] text-center">
+            <p className="border-r-2 p-2 w-[25%] md: lg:w-[20%] text-left">
               {items?.name}
             </p>
-            <p className="border-r-2 p-2 w-[10%] text-center hidden lg:block">
+            <p className="border-r-2 p-2 w-[10%] text-left hidden lg:block">
               {items?.manufacturer}
             </p>
-            <p className="border-r-2 p-2 w-[15%] text-center hidden md:block">
+            <p className="border-r-2 p-2 w-[15%] text-left hidden md:block">
               {items?.part_number}
             </p>
             {login_check && (
@@ -153,7 +153,7 @@ const View = () => {
             >
               {items?.free_stock}
             </p>
-            <p className="border-r-2 p-2 w-[30%] text-center hidden lg:block">
+            <p className="border-r-2 p-2 w-[30%] text-left hidden lg:block">
               {items?.printer_model}
             </p>
           </div>
