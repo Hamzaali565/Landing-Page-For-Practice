@@ -95,13 +95,17 @@ const View = () => {
             <p className="border-r-2 p-2 w-[25%] md: lg:w-[10%] text-center">
               Code
             </p>
-            <p className="border-r-2 p-2 w-[25%] md: lg:w-[20%] text-center">
+            <p
+              className={`border-r-2 p-2 ${
+                !login_check ? "w-[50%]" : "w-[25%]"
+              } md: lg:w-[20%] text-center`}
+            >
               Name
             </p>
             <p className="border-r-2 p-2 w-[10%] text-center hidden lg:block">
               Manufacturer
             </p>
-            <p className="border-r-2 p-2 w-[15%] text-center hidden md:block">
+            <p className="border-r-2 p-2 w-[15%] text-center hidden lg:block">
               Part Number
             </p>
             {login_check && (
@@ -116,7 +120,7 @@ const View = () => {
             >
               Free Stock
             </p>
-            <p className="border-r-2 p-2 w-[30%] text-center hidden lg:block">
+            <p className="border-r-2 p-2 w-[30%] text-left hidden lg:block">
               Printer Models
             </p>
           </div>
@@ -132,13 +136,18 @@ const View = () => {
             <p className="border-r-2 p-2 w-[25%] md: lg:w-[10%] text-left">
               {items?.code}
             </p>
-            <p className="border-r-2 p-2 w-[25%] md: lg:w-[20%] text-left">
+            {/* <p className="border-r-2 p-2 w-[25%] md: lg:w-[20%] text-left"> */}
+            <p
+              className={`border-r-2 p-2 ${
+                !login_check ? "w-[50%]" : "w-[25%]"
+              }  lg:w-[20%] text-left`}
+            >
               {items?.name}
             </p>
             <p className="border-r-2 p-2 w-[10%] text-left hidden lg:block">
               {items?.manufacturer}
             </p>
-            <p className="border-r-2 p-2 w-[15%] text-left hidden md:block">
+            <p className="border-r-2 p-2 w-[15%] text-left hidden lg:block">
               {items?.part_number}
             </p>
             {login_check && (

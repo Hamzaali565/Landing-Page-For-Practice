@@ -12,6 +12,7 @@ import {
 } from "react-router-dom";
 import UserRequestsTable from "./screens/UserRequests";
 import Header from "./components/Header";
+import ProductList from "./screens/ProductList";
 
 function App() {
   const { login_check, role } = useUserStore();
@@ -27,6 +28,7 @@ function App() {
             <Route path="/login" element={<Signin />} />
             <Route path="/create-user" element={<Signup />} />
             <Route path="/product-list" element={<View />} />
+            <Route path="/products-list" element={<ProductList />} />
           </Routes>
         ) : login_check && role === "admin" ? (
           <Routes>
