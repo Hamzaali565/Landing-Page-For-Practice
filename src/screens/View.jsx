@@ -4,6 +4,8 @@ import useUserStore from "../store/zustand";
 import NewFooter from "../components/NewFooter";
 import { useDebounce } from "use-debounce";
 import { TbLoader2 } from "react-icons/tb";
+import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
 
 const View = () => {
   const [listData, setListData] = useState([]);
@@ -26,6 +28,58 @@ const View = () => {
     }
   }, [debouncedSearchTerm]);
 
+  const downloadExcelFile = () => {
+    setLoadingExcel(true);
+    let downloadData = null;
+
+    if (!login_check) {
+      downloadData = copyListData.map((item) => ({
+        Code: item?.code,
+        Name: item?.name,
+        Manufacturer: item?.manufacturer,
+        "Part Number": item?.part_number,
+        "Printer Model": item?.printer_model,
+      }));
+    } else {
+      downloadData = copyListData.map((item) => ({
+        Code: item?.code,
+        Name: item?.name,
+        Manufacturer: item?.manufacturer,
+        "Free Stock": item?.free_stock,
+        "Part Number": item?.part_number,
+        "Printer Model": item?.printer_model,
+      }));
+    }
+
+    const worksheet = XLSX.utils.json_to_sheet(downloadData);
+
+    // Calculate column widths
+    const columnWidths = Object.keys(downloadData[0] || {}).map((key) => {
+      const maxLength = downloadData.reduce((max, row) => {
+        const value = row[key] ? row[key].toString() : "";
+        return Math.max(max, value.length);
+      }, key.length); // include header length too
+
+      return { wch: maxLength + 2 }; // +2 for extra padding
+    });
+
+    worksheet["!cols"] = columnWidths;
+
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+
+    // Convert to a Blob and download it
+    const excelBlob = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "array",
+    });
+    const blob = new Blob([excelBlob], {
+      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    });
+    setLoadingExcel(false);
+    saveAs(blob, "Product List.xlsx");
+  };
+
   const getData = async () => {
     try {
       setLoading(true);
@@ -46,9 +100,13 @@ const View = () => {
   const filter_name = (value) => {
     const searchTerm = value.toLowerCase();
     const filterData = copyListData.filter((item) =>
-      [item.code, item.name, item.manufacturer, item.part_number].some(
-        (field) => field?.toLowerCase().includes(searchTerm)
-      )
+      [
+        item.code,
+        item.name,
+        item.manufacturer,
+        item.part_number,
+        item?.printer_model,
+      ].some((field) => field?.toLowerCase().includes(searchTerm))
     );
     setListData(filterData.length > 0 ? filterData : copyListData);
   };
@@ -69,7 +127,7 @@ const View = () => {
           />
           <div>
             <button
-              // onClick={getData}
+              onClick={downloadExcelFile}
               type="submit"
               disabled={loadingExcel}
               className="border-2 p-2 px-4 rounded-lg bg-[#F50A8B] text-white font-bold inline-flex items-center justify-center gap-2"
