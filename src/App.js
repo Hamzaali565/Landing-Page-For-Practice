@@ -36,12 +36,14 @@ function App() {
             <Route path="/edit-data" element={<EditData />} />
             <Route path="/product-list" element={<View />} />
             <Route path="/user-request" element={<UserRequestsTable />} />
+            <Route path="/products-list" element={<ProductList />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         ) : login_check && role === "user" ? (
           <Routes>
             <Route path="/" element={<New2 />} />
             <Route path="/product-list" element={<View />} />
+            <Route path="/products-list" element={<ProductList />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         ) : null}

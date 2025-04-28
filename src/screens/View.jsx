@@ -36,7 +36,7 @@ const View = () => {
       downloadData = copyListData.map((item) => ({
         Code: item?.code,
         Name: item?.name,
-        Manufacturer: item?.manufacturer,
+        "Sales Price": item?.sales_price,
         "Part Number": item?.part_number,
         "Printer Model": item?.printer_model,
       }));
@@ -44,8 +44,8 @@ const View = () => {
       downloadData = copyListData.map((item) => ({
         Code: item?.code,
         Name: item?.name,
-        Manufacturer: item?.manufacturer,
-        "Free Stock": item?.free_stock,
+        "Sales Price": item?.sales_price,
+        "Available Stock": item?.free_stock,
         "Part Number": item?.part_number,
         "Printer Model": item?.printer_model,
       }));
@@ -156,13 +156,13 @@ const View = () => {
             <p
               className={`border-r-2 p-2 ${
                 !login_check ? "w-[50%]" : "w-[25%]"
-              } md: lg:w-[20%] text-center`}
+              } md: lg:w-[30%] text-center`}
             >
               Name
             </p>
-            <p className="border-r-2 p-2 w-[10%] text-center hidden lg:block">
+            {/* <p className="border-r-2 p-2 w-[10%] text-center hidden lg:block">
               Manufacturer
-            </p>
+            </p> */}
             <p className="border-r-2 p-2 w-[15%] text-center hidden lg:block">
               Part Number
             </p>
@@ -176,7 +176,7 @@ const View = () => {
                 login_check ? "lg:w-[7.5%]" : "lg:w-[15%]"
               }  md: text-center`}
             >
-              Free Stock
+              Available Stock
             </p>
             <p className="border-r-2 p-2 w-[30%] text-left hidden lg:block">
               Printer Models
@@ -198,13 +198,13 @@ const View = () => {
             <p
               className={`border-r-2 p-2 ${
                 !login_check ? "w-[50%]" : "w-[25%]"
-              }  lg:w-[20%] text-left`}
+              }  lg:w-[30%] text-left`}
             >
               {items?.name}
             </p>
-            <p className="border-r-2 p-2 w-[10%] text-left hidden lg:block">
+            {/* <p className="border-r-2 p-2 w-[10%] text-left hidden lg:block">
               {items?.manufacturer}
-            </p>
+            </p> */}
             <p className="border-r-2 p-2 w-[15%] text-left hidden lg:block">
               {items?.part_number}
             </p>

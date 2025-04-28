@@ -29,8 +29,8 @@ const ProductList = () => {
     const downloadData = copyListData.map((item) => ({
       Code: item?.code,
       Name: item?.name,
-      Manufacturer: item?.manufacturer,
-      "Free Stock": item?.free_stock,
+      "Sales Price": item?.sales_price,
+      "Available Stock": item?.free_stock,
       "Part Number": item?.part_number,
       "Printer Model": item?.printer_model,
     }));
@@ -136,12 +136,12 @@ const ProductList = () => {
             <p className="border-r-2 p-2 w-[25%] md: lg:w-[10%] text-center">
               Code
             </p>
-            <p className="border-r-2 p-2 w-[25%] md: lg:w-[20%] text-center">
+            <p className="border-r-2 p-2 w-[25%] md: lg:w-[30%] text-center">
               Name
             </p>
-            <p className="border-r-2 p-2 w-[10%] text-center hidden lg:block">
+            {/* <p className="border-r-2 p-2 w-[10%] text-center hidden lg:block">
               Manufacturer
-            </p>
+            </p> */}
             <p className="border-r-2 p-2 w-[15%] text-center hidden md:block">
               Part Number
             </p>
@@ -151,7 +151,7 @@ const ProductList = () => {
             </p>
 
             <p className={`border-r-2 p-2 w-[25%]  lg:w-[7.5%] text-center`}>
-              Free Stock
+              Available Stock
             </p>
             <p className="border-r-2 p-2 w-[30%] text-left hidden lg:block">
               Printer Models
@@ -169,12 +169,12 @@ const ProductList = () => {
             <p className="border-r-2 p-2 w-[25%] md: lg:w-[10%] text-left">
               {items?.code}
             </p>
-            <p className="border-r-2 p-2 w-[25%] md: lg:w-[20%] text-left">
+            <p className="border-r-2 p-2 w-[25%] md: lg:w-[30%] text-left">
               {items?.name}
             </p>
-            <p className="border-r-2 p-2 w-[10%] text-left hidden lg:block">
+            {/* <p className="border-r-2 p-2 w-[10%] text-left hidden lg:block">
               {items?.manufacturer}
-            </p>
+            </p> */}
             <p className="border-r-2 p-2 w-[15%] text-left hidden md:block">
               {items?.part_number}
             </p>
