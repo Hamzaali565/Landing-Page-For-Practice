@@ -6,6 +6,9 @@ import { useDebounce } from "use-debounce";
 import { TbLoader2 } from "react-icons/tb";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
+import { useNavigate } from "react-router-dom";
+import Modal from "../components/Modal";
+import { toast } from "react-toastify";
 
 const View = () => {
   const [listData, setListData] = useState([]);
@@ -14,11 +17,43 @@ const View = () => {
   const [loadingExcel, setLoadingExcel] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedSearchTerm] = useDebounce(searchTerm, 300);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
+
+  const handleSubmit = async (value) => {
+    try {
+      console.log("Form submitted:", value);
+      const response = await fetch(`${url}/excel_request`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: value?.email,
+          product_detail: value?.productDetail,
+          username: value.name,
+        }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        toast.error(data?.message);
+        return;
+      }
+      toast.success(
+        "Request generated successfully. You will be notified through E-mail. "
+      );
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
   const { login_check } = useUserStore();
   useEffect(() => {
     getData();
   }, []);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (debouncedSearchTerm.trim() === "") {
@@ -28,56 +63,64 @@ const View = () => {
     }
   }, [debouncedSearchTerm]);
 
+  // const downloadExcelFile = () => {
+  //   setLoadingExcel(true);
+  //   let downloadData = null;
+
+  //   if (!login_check) {
+  //     downloadData = copyListData.map((item) => ({
+  //       Code: item?.code,
+  //       Name: item?.name,
+  //       "Part Number": item?.part_number,
+  //       "Printer Model": item?.printer_model,
+  //     }));
+  //   } else {
+  //     downloadData = copyListData.map((item) => ({
+  //       Code: item?.code,
+  //       Name: item?.name,
+  //       "Sales Price": item?.sales_price,
+  //       "Available Stock": item?.free_stock,
+  //       "Part Number": item?.part_number,
+  //       "Printer Model": item?.printer_model,
+  //     }));
+  //   }
+
+  //   const worksheet = XLSX.utils.json_to_sheet(downloadData);
+
+  //   // Calculate column widths
+  //   const columnWidths = Object.keys(downloadData[0] || {}).map((key) => {
+  //     const maxLength = downloadData.reduce((max, row) => {
+  //       const value = row[key] ? row[key].toString() : "";
+  //       return Math.max(max, value.length);
+  //     }, key.length); // include header length too
+
+  //     return { wch: maxLength + 2 }; // +2 for extra padding
+  //   });
+
+  //   worksheet["!cols"] = columnWidths;
+
+  //   const workbook = XLSX.utils.book_new();
+  //   XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+
+  //   // Convert to a Blob and download it
+  //   const excelBlob = XLSX.write(workbook, {
+  //     bookType: "xlsx",
+  //     type: "array",
+  //   });
+  //   const blob = new Blob([excelBlob], {
+  //     type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  //   });
+  //   setLoadingExcel(false);
+  //   saveAs(blob, "Product List.xlsx");
+  // };
+
   const downloadExcelFile = () => {
-    setLoadingExcel(true);
-    let downloadData = null;
-
     if (!login_check) {
-      downloadData = copyListData.map((item) => ({
-        Code: item?.code,
-        Name: item?.name,
-        "Sales Price": item?.sales_price,
-        "Part Number": item?.part_number,
-        "Printer Model": item?.printer_model,
-      }));
+      navigate("/login");
+      return;
     } else {
-      downloadData = copyListData.map((item) => ({
-        Code: item?.code,
-        Name: item?.name,
-        "Sales Price": item?.sales_price,
-        "Available Stock": item?.free_stock,
-        "Part Number": item?.part_number,
-        "Printer Model": item?.printer_model,
-      }));
+      handleOpenModal();
     }
-
-    const worksheet = XLSX.utils.json_to_sheet(downloadData);
-
-    // Calculate column widths
-    const columnWidths = Object.keys(downloadData[0] || {}).map((key) => {
-      const maxLength = downloadData.reduce((max, row) => {
-        const value = row[key] ? row[key].toString() : "";
-        return Math.max(max, value.length);
-      }, key.length); // include header length too
-
-      return { wch: maxLength + 2 }; // +2 for extra padding
-    });
-
-    worksheet["!cols"] = columnWidths;
-
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
-
-    // Convert to a Blob and download it
-    const excelBlob = XLSX.write(workbook, {
-      bookType: "xlsx",
-      type: "array",
-    });
-    const blob = new Blob([excelBlob], {
-      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    });
-    setLoadingExcel(false);
-    saveAs(blob, "Product List.xlsx");
   };
 
   const getData = async () => {
@@ -132,7 +175,7 @@ const View = () => {
               disabled={loadingExcel}
               className="border-2 p-2 px-4 rounded-lg bg-[#F50A8B] text-white font-bold inline-flex items-center justify-center gap-2"
             >
-              Download Excel{" "}
+              Request For Excel{" "}
               {loadingExcel && (
                 <span>
                   <TbLoader2 className="text-yellow-400 animate-spin" />
@@ -225,6 +268,13 @@ const View = () => {
             </p>
           </div>
         ))}
+
+      <Modal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        onSubmit={handleSubmit}
+      />
+
       <div className="pt-36">
         <NewFooter />
       </div>

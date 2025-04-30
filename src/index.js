@@ -14,7 +14,7 @@ root.render(
         pauseOnFocusLoss={false}
         position="bottom-right"
         transition={Bounce}
-        autoClose={2000}
+        autoClose={3000}
       />
     </BrowserRouter>
     <App />

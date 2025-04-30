@@ -5,6 +5,8 @@ import { useDebounce } from "use-debounce";
 import { TbLoader2 } from "react-icons/tb";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
+import Modal from "../components/Modal";
+import { toast } from "react-toastify";
 const ProductList = () => {
   const [listData, setListData] = useState([]);
   const [copyListData, setCopyListData] = useState([]);
@@ -12,7 +14,37 @@ const ProductList = () => {
   const [loadingExcel, setLoadingExcel] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedSearchTerm] = useDebounce(searchTerm, 300);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
+
+  const handleSubmit = async (value) => {
+    try {
+      console.log("Form submitted:", value);
+      const response = await fetch(`${url}/excel_request`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: value?.email,
+          product_detail: value?.productDetail,
+          username: value.name,
+        }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        toast.error(data?.message);
+        return;
+      }
+      toast.success(
+        "Request generated successfully. You will be notified through E-mail. "
+      );
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
   useEffect(() => {
     getData();
   }, []);
@@ -93,6 +125,7 @@ const ProductList = () => {
     );
     setListData(filterData.length > 0 ? filterData : copyListData);
   };
+
   return (
     <div>
       <div className="h-36 fixed w-full z-30 bg-white">
@@ -110,12 +143,12 @@ const ProductList = () => {
           />
           <div>
             <button
-              onClick={downloadExcelFile}
+              onClick={handleOpenModal}
               type="submit"
               disabled={loadingExcel}
               className="border-2 p-2 px-4 rounded-lg bg-[#F50A8B] text-white font-bold inline-flex items-center justify-center gap-2"
             >
-              Download Excel{" "}
+              Request For Excel{" "}
               {loadingExcel && (
                 <span>
                   <TbLoader2 className="text-yellow-400 animate-spin" />
@@ -191,6 +224,11 @@ const ProductList = () => {
             </p>
           </div>
         ))}
+      <Modal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        onSubmit={handleSubmit}
+      />
       <div className="pt-36">
         <NewFooter />
       </div>
