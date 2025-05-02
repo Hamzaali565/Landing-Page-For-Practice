@@ -14,6 +14,7 @@ import UserRequestsTable from "./screens/UserRequests";
 import Header from "./components/Header";
 import ProductList from "./screens/ProductList";
 import Advantia from "./screens/Advantia";
+import Integra from "./screens/Integra";
 
 function App() {
   const { login_check, role } = useUserStore();
@@ -31,6 +32,7 @@ function App() {
             <Route path="/product-list" element={<View />} />
             <Route path="/products-list" element={<ProductList />} />
             <Route path="/advantia-list" element={<Advantia />} />
+            <Route path="/integra-list" element={<Integra />} />
           </Routes>
         ) : login_check && role === "admin" ? (
           <Routes>
@@ -40,6 +42,7 @@ function App() {
             <Route path="/user-request" element={<UserRequestsTable />} />
             <Route path="/products-list" element={<ProductList />} />
             <Route path="/advantia-list" element={<Advantia />} />
+            <Route path="/integra-list" element={<Integra />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         ) : login_check && role === "user" ? (
@@ -48,6 +51,7 @@ function App() {
             <Route path="/product-list" element={<View />} />
             <Route path="/products-list" element={<ProductList />} />
             <Route path="/advantia-list" element={<Advantia />} />
+            <Route path="/integra-list" element={<Integra />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         ) : null}
