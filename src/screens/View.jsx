@@ -160,6 +160,9 @@ const View = () => {
       const response = await fetch(`${url}/spec_user`, {
         method: "GET",
         credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
       const data = await response.json();
       if (!response.ok) {
