@@ -51,6 +51,7 @@ const View = () => {
   const { login_check } = useUserStore();
   useEffect(() => {
     getData();
+    list_view();
   }, []);
 
   const navigate = useNavigate();
@@ -152,6 +153,23 @@ const View = () => {
       ].some((field) => field?.toLowerCase().includes(searchTerm))
     );
     setListData(filterData.length > 0 ? filterData : copyListData);
+  };
+
+  const list_view = async () => {
+    try {
+      const response = await fetch(`${url}/spec_user`, {
+        method: "GET",
+        credentials: "include",
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        console.log("response error -->", response);
+        return;
+      }
+      console.log(data);
+    } catch (error) {
+      console.log("error -->", error);
+    }
   };
   return (
     <div>

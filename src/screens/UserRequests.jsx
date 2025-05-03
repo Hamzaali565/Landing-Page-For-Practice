@@ -11,130 +11,130 @@ import { toast } from "react-toastify";
 import { TbLoader2 } from "react-icons/tb";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-let mock_enteries = [
-  {
-    username: "john_doe",
-    email: "john@example.com",
-    role: "User",
-    createdAt: "2025-04-30T16:42:42.702Z",
-  },
-  {
-    username: "jane_smith",
-    email: "jane@example.com",
-    role: "User",
-    createdAt: "2025-04-29T14:15:22.123Z",
-  },
-  {
-    username: "alex_walker",
-    email: "alex@example.com",
-    role: "User",
-    createdAt: "2025-04-28T09:50:10.541Z",
-  },
-  {
-    username: "sara_lee",
-    email: "sara@example.com",
-    role: "User",
-    createdAt: "2025-04-27T11:32:05.234Z",
-  },
-  {
-    username: "mike_jordan",
-    email: "mike@example.com",
-    role: "User",
-    createdAt: "2025-04-26T13:45:33.678Z",
-  },
-  {
-    username: "lisa_wong",
-    email: "lisa@example.com",
-    role: "User",
-    createdAt: "2025-04-25T10:12:00.777Z",
-  },
-  {
-    username: "david_clark",
-    email: "david@example.com",
-    role: "User",
-    createdAt: "2025-04-24T08:20:45.345Z",
-  },
-  {
-    username: "emma_watson",
-    email: "emma@example.com",
-    role: "User",
-    createdAt: "2025-04-23T18:05:17.999Z",
-  },
-  {
-    username: "oliver_king",
-    email: "oliver@example.com",
-    role: "User",
-    createdAt: "2025-04-22T16:25:01.456Z",
-  },
-  {
-    username: "ava_taylor",
-    email: "ava@example.com",
-    role: "User",
-    createdAt: "2025-04-21T12:30:22.321Z",
-  },
-  {
-    username: "liam_moore",
-    email: "liam@example.com",
-    role: "User",
-    createdAt: "2025-04-20T09:40:55.654Z",
-  },
-  {
-    username: "noah_hall",
-    email: "noah@example.com",
-    role: "User",
-    createdAt: "2025-04-19T14:10:10.678Z",
-  },
-  {
-    username: "sophia_white",
-    email: "sophia@example.com",
-    role: "User",
-    createdAt: "2025-04-18T11:00:00.432Z",
-  },
-  {
-    username: "william_adams",
-    email: "william@example.com",
-    role: "User",
-    createdAt: "2025-04-17T15:15:15.890Z",
-  },
-  {
-    username: "mia_thomas",
-    email: "mia@example.com",
-    role: "User",
-    createdAt: "2025-04-16T17:25:30.123Z",
-  },
-  {
-    username: "ethan_scott",
-    email: "ethan@example.com",
-    role: "User",
-    createdAt: "2025-04-15T08:45:10.567Z",
-  },
-  {
-    username: "isabella_morris",
-    email: "isabella@example.com",
-    role: "User",
-    createdAt: "2025-04-14T10:35:48.789Z",
-  },
-  {
-    username: "james_wright",
-    email: "james@example.com",
-    role: "User",
-    createdAt: "2025-04-13T13:20:05.231Z",
-  },
-  {
-    username: "charlotte_green",
-    email: "charlotte@example.com",
-    role: "User",
-    createdAt: "2025-04-12T09:55:37.600Z",
-  },
-  {
-    username: "benjamin_wood",
-    email: "benjamin@example.com",
-    role: "User",
-    createdAt: "2025-04-11T07:00:00.000Z",
-  },
-];
+// let mock_enteries = [
+//   {
+//     username: "john_doe",
+//     email: "john@example.com",
+//     role: "User",
+//     createdAt: "2025-04-30T16:42:42.702Z",
+//   },
+//   {
+//     username: "jane_smith",
+//     email: "jane@example.com",
+//     role: "User",
+//     createdAt: "2025-04-29T14:15:22.123Z",
+//   },
+//   {
+//     username: "alex_walker",
+//     email: "alex@example.com",
+//     role: "User",
+//     createdAt: "2025-04-28T09:50:10.541Z",
+//   },
+//   {
+//     username: "sara_lee",
+//     email: "sara@example.com",
+//     role: "User",
+//     createdAt: "2025-04-27T11:32:05.234Z",
+//   },
+//   {
+//     username: "mike_jordan",
+//     email: "mike@example.com",
+//     role: "User",
+//     createdAt: "2025-04-26T13:45:33.678Z",
+//   },
+//   {
+//     username: "lisa_wong",
+//     email: "lisa@example.com",
+//     role: "User",
+//     createdAt: "2025-04-25T10:12:00.777Z",
+//   },
+//   {
+//     username: "david_clark",
+//     email: "david@example.com",
+//     role: "User",
+//     createdAt: "2025-04-24T08:20:45.345Z",
+//   },
+//   {
+//     username: "emma_watson",
+//     email: "emma@example.com",
+//     role: "User",
+//     createdAt: "2025-04-23T18:05:17.999Z",
+//   },
+//   {
+//     username: "oliver_king",
+//     email: "oliver@example.com",
+//     role: "User",
+//     createdAt: "2025-04-22T16:25:01.456Z",
+//   },
+//   {
+//     username: "ava_taylor",
+//     email: "ava@example.com",
+//     role: "User",
+//     createdAt: "2025-04-21T12:30:22.321Z",
+//   },
+//   {
+//     username: "liam_moore",
+//     email: "liam@example.com",
+//     role: "User",
+//     createdAt: "2025-04-20T09:40:55.654Z",
+//   },
+//   {
+//     username: "noah_hall",
+//     email: "noah@example.com",
+//     role: "User",
+//     createdAt: "2025-04-19T14:10:10.678Z",
+//   },
+//   {
+//     username: "sophia_white",
+//     email: "sophia@example.com",
+//     role: "User",
+//     createdAt: "2025-04-18T11:00:00.432Z",
+//   },
+//   {
+//     username: "william_adams",
+//     email: "william@example.com",
+//     role: "User",
+//     createdAt: "2025-04-17T15:15:15.890Z",
+//   },
+//   {
+//     username: "mia_thomas",
+//     email: "mia@example.com",
+//     role: "User",
+//     createdAt: "2025-04-16T17:25:30.123Z",
+//   },
+//   {
+//     username: "ethan_scott",
+//     email: "ethan@example.com",
+//     role: "User",
+//     createdAt: "2025-04-15T08:45:10.567Z",
+//   },
+//   {
+//     username: "isabella_morris",
+//     email: "isabella@example.com",
+//     role: "User",
+//     createdAt: "2025-04-14T10:35:48.789Z",
+//   },
+//   {
+//     username: "james_wright",
+//     email: "james@example.com",
+//     role: "User",
+//     createdAt: "2025-04-13T13:20:05.231Z",
+//   },
+//   {
+//     username: "charlotte_green",
+//     email: "charlotte@example.com",
+//     role: "User",
+//     createdAt: "2025-04-12T09:55:37.600Z",
+//   },
+//   {
+//     username: "benjamin_wood",
+//     email: "benjamin@example.com",
+//     role: "User",
+//     createdAt: "2025-04-11T07:00:00.000Z",
+//   },
+// ];
 
-const ITEMS_PER_LOAD = 5;
+// const ITEMS_PER_LOAD = 5;
 
 export default function UserRequestsTable() {
   // Sample user request data
@@ -142,26 +142,55 @@ export default function UserRequestsTable() {
   const [toggle, setToggle] = useState(false);
   const [loading, setLoading] = useState(false);
   const [currentId, setCurrentId] = useState(0);
-  const [visibleUsers, setVisibleUsers] = useState(
-    mock_enteries.slice(0, ITEMS_PER_LOAD)
-  );
+  // const [visibleUsers, setVisibleUsers] = useState(
+  //   mock_enteries.slice(0, ITEMS_PER_LOAD)
+  // );
+  const [visibleUsers, setVisibleUsers] = useState([]);
   const [hasMore, setHasMore] = useState(true);
 
-  const fetchMoreData = () => {
-    const next = mock_enteries.slice(
-      visibleUsers.length,
-      visibleUsers.length + ITEMS_PER_LOAD
-    );
-    setVisibleUsers([...visibleUsers, ...next]);
+  // const fetchMoreData = () => {
+  //   const next = mock_enteries.slice(
+  //     visibleUsers.length,
+  //     visibleUsers.length + ITEMS_PER_LOAD
+  //   );
+  //   setVisibleUsers([...visibleUsers, ...next]);
 
-    if (visibleUsers.length + ITEMS_PER_LOAD >= mock_enteries.length) {
-      setHasMore(false);
+  //   if (visibleUsers.length + ITEMS_PER_LOAD >= mock_enteries.length) {
+  //     setHasMore(false);
+  //   }
+  // };
+
+  const fetchMoreData = async () => {
+    try {
+      const response = await fetch(
+        `${url}/page_user?avoid=${visibleUsers.length}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      console.log(data);
+      if (!response.ok) {
+        setHasMore(false);
+        return;
+      }
+      setVisibleUsers([...visibleUsers, ...data?.data]);
+    } catch (error) {
+      console.log("error =>", error);
     }
   };
 
   useEffect(() => {
     req_users();
   }, [toggle]);
+
+  useEffect(() => {
+    fetchMoreData();
+  }, []);
+
   const req_users = async () => {
     try {
       const response = await fetch(`${url}/in_active_users`);
@@ -219,6 +248,42 @@ export default function UserRequestsTable() {
     indexOfLastItem
   );
   const totalPages = Math.ceil(filteredRequests.length / itemsPerPage);
+
+  const handleInput = (key, value, item) => {
+    const updatedValue = visibleUsers.map((readVal) => {
+      if (item?._id === readVal?._id) {
+        return { ...readVal, [key]: value };
+      }
+      return readVal;
+    });
+    // console.log(updatedValue);
+    setVisibleUsers(updatedValue);
+  };
+
+  const update_visible_user = async (item) => {
+    try {
+      const response = await fetch(`${url}/visible_list`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          _id: item?._id,
+          product_list: item?.product_list,
+          advantia_list: item?.advantia_list,
+          integra_list: item?.integra_list,
+        }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        toast.error(data?.message);
+        return;
+      }
+      toast.success("Record updated successfully");
+    } catch (error) {
+      console.log("error -->", error);
+    }
+  };
 
   return (
     <div>
@@ -459,18 +524,53 @@ export default function UserRequestsTable() {
                       {request?.email}
                     </td>
                     <td className="py-4 px-6 text-sm text-gray-500">
-                      <input type="checkbox" name="" id="" />
+                      <input
+                        type="checkbox"
+                        name=""
+                        id=""
+                        checked={request?.product_list}
+                        onChange={(e) =>
+                          handleInput("product_list", e.target.checked, request)
+                        }
+                      />
                     </td>
                     <td className="py-4 px-6 text-sm text-gray-500">
-                      <input type="checkbox" name="" id="" />
+                      <input
+                        type="checkbox"
+                        name=""
+                        id=""
+                        checked={request?.advantia_list}
+                        onChange={(e) =>
+                          handleInput(
+                            "advantia_list",
+                            e.target.checked,
+                            request
+                          )
+                        }
+                      />
                     </td>
                     <td className="py-4 px-6 text-sm">
                       <span className="py-4 px-6 text-sm text-gray-500">
-                        <input type="checkbox" name="" id="" />
+                        <input
+                          type="checkbox"
+                          name=""
+                          id=""
+                          checked={request?.integra_list}
+                          onChange={(e) =>
+                            handleInput(
+                              "integra_list",
+                              e.target.checked,
+                              request
+                            )
+                          }
+                        />
                       </span>
                     </td>
                     <td className="py-4 px-6 text-sm font-medium text-center">
-                      <button className="px-3 py-1 rounded-md bg-[#F50A8B] hover:bg-pink-600 text-white font-bold">
+                      <button
+                        onClick={() => update_visible_user(request)}
+                        className="px-3 py-1 rounded-md bg-[#F50A8B] hover:bg-pink-600 text-white font-bold"
+                      >
                         Allow
                       </button>
                     </td>
