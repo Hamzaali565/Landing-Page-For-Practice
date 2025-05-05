@@ -155,6 +155,25 @@ const View = () => {
     setListData(filterData.length > 0 ? filterData : copyListData);
   };
 
+  // const list_view = async () => {
+  //   try {
+  //     const response = await fetch(`${url}/spec_user`, {
+  //       method: "GET",
+  //       credentials: "include",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     });
+  //     const data = await response.json();
+  //     if (!response.ok) {
+  //       console.log("response error -->", response);
+  //       return;
+  //     }
+  //     console.log(data);
+  //   } catch (error) {
+  //     console.log("error -->", error);
+  //   }
+  // };
   const list_view = async () => {
     try {
       const response = await fetch(`${url}/spec_user`, {
@@ -174,6 +193,7 @@ const View = () => {
       console.log("error -->", error);
     }
   };
+
   return (
     <div>
       <div className="h-36 fixed w-full z-30 bg-white">

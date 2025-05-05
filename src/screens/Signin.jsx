@@ -32,6 +32,7 @@ const Signin = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...userDetail }),
+        credentials: "include",
       });
       const data = await response.json();
 
