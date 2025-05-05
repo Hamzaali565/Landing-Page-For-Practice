@@ -169,6 +169,7 @@ export default function UserRequestsTable() {
           headers: {
             "Content-Type": "application/json",
           },
+          credentials: "include",
         }
       );
       const data = await response.json();
@@ -193,7 +194,9 @@ export default function UserRequestsTable() {
 
   const req_users = async () => {
     try {
-      const response = await fetch(`${url}/in_active_users`);
+      const response = await fetch(`${url}/in_active_users`, {
+        credentials: "include",
+      });
       const data = await response.json();
       if (!response.ok) {
         toast.error(data.message);
@@ -220,6 +223,7 @@ export default function UserRequestsTable() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ _id: id }),
+        credentials: "include",
       });
       const data = await response.json();
       if (!response.ok) {
@@ -273,6 +277,7 @@ export default function UserRequestsTable() {
           advantia_list: item?.advantia_list,
           integra_list: item?.integra_list,
         }),
+        credentials: "include",
       });
       const data = await response.json();
       if (!response.ok) {

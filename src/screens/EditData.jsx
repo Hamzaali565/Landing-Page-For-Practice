@@ -97,6 +97,7 @@ const EditData = () => {
           // 'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({ data: allData }),
+        credentials: "include",
       });
 
       const result = await response.json();

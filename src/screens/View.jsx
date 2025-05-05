@@ -15,6 +15,7 @@ const View = () => {
   const [copyListData, setCopyListData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loadingExcel, setLoadingExcel] = useState(false);
+  const [listPermission, setListPermission] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedSearchTerm] = useDebounce(searchTerm, 300);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -155,25 +156,6 @@ const View = () => {
     setListData(filterData.length > 0 ? filterData : copyListData);
   };
 
-  // const list_view = async () => {
-  //   try {
-  //     const response = await fetch(`${url}/spec_user`, {
-  //       method: "GET",
-  //       credentials: "include",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
-  //     const data = await response.json();
-  //     if (!response.ok) {
-  //       console.log("response error -->", response);
-  //       return;
-  //     }
-  //     console.log(data);
-  //   } catch (error) {
-  //     console.log("error -->", error);
-  //   }
-  // };
   const list_view = async () => {
     try {
       const response = await fetch(`${url}/spec_user`, {
@@ -188,7 +170,8 @@ const View = () => {
         console.log("response error -->", response);
         return;
       }
-      console.log(data);
+      console.log(data.data);
+      setListPermission(data?.data);
     } catch (error) {
       console.log("error -->", error);
     }
@@ -294,7 +277,15 @@ const View = () => {
             </p>
             {login_check && (
               <p className="border-r-2 p-2 w-[25%] md: lg:w-[7.5%] text-center">
-                {items?.sales_price}
+                {listPermission
+                  ? listPermission?.product_list
+                    ? items?.sales_price
+                    : listPermission?.advantia_list
+                    ? items?.advantia_price
+                    : listPermission?.integra_list
+                    ? items?.integra_price
+                    : items?.sales_price
+                  : items?.sales_price}
               </p>
             )}
             <p
