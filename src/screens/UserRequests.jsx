@@ -184,30 +184,30 @@ export default function UserRequestsTable() {
     }
   };
 
-  useEffect(() => {
-    req_users();
-  }, [toggle]);
+  // useEffect(() => {
+  //   req_users();
+  // }, [toggle]);
 
   useEffect(() => {
     fetchMoreData();
   }, []);
 
-  const req_users = async () => {
-    try {
-      const response = await fetch(`${url}/in_active_users`, {
-        credentials: "include",
-      });
-      const data = await response.json();
-      if (!response.ok) {
-        toast.error(data.message);
-      }
-      // setRequests(data?.data);
-      setRequests(Array.isArray(data?.data) ? data.data : []);
-    } catch (error) {
-      console.log("error=>", error);
-      setRequests([]);
-    }
-  };
+  // const req_users = async () => {
+  //   try {
+  //     const response = await fetch(`${url}/in_active_users`, {
+  //       credentials: "include",
+  //     });
+  //     const data = await response.json();
+  //     if (!response.ok) {
+  //       toast.error(data.message);
+  //     }
+  //     // setRequests(data?.data);
+  //     setRequests(Array.isArray(data?.data) ? data.data : []);
+  //   } catch (error) {
+  //     console.log("error=>", error);
+  //     setRequests([]);
+  //   }
+  // };
 
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -253,18 +253,43 @@ export default function UserRequestsTable() {
   );
   const totalPages = Math.ceil(filteredRequests.length / itemsPerPage);
 
-  const handleInput = (key, value, item) => {
+  const handleInput = (value, item, key) => {
     const updatedValue = visibleUsers.map((readVal) => {
       if (item?._id === readVal?._id) {
-        return { ...readVal, [key]: value };
+        if (value === "product_list") {
+          return {
+            ...readVal,
+            product_list: true,
+            advantia_list: false,
+            integra_list: false,
+          };
+        } else if (value === "advantia_list") {
+          return {
+            ...readVal,
+            advantia_list: true,
+            product_list: false,
+            integra_list: false,
+          };
+        } else if (value === "integra_list") {
+          return {
+            ...readVal,
+            advantia_list: false,
+            product_list: false,
+            integra_list: true,
+          };
+        } else if (key === "status") {
+          return { ...readVal, status: value };
+        }
       }
       return readVal;
     });
-    // console.log(updatedValue);
+    console.log(updatedValue);
     setVisibleUsers(updatedValue);
   };
 
   const update_visible_user = async (item) => {
+    setLoading(true);
+    setCurrentId(item?._id);
     try {
       const response = await fetch(`${url}/visible_list`, {
         method: "PUT",
@@ -276,6 +301,7 @@ export default function UserRequestsTable() {
           product_list: item?.product_list,
           advantia_list: item?.advantia_list,
           integra_list: item?.integra_list,
+          status: item?.status,
         }),
         credentials: "include",
       });
@@ -287,176 +313,20 @@ export default function UserRequestsTable() {
       toast.success("Record updated successfully");
     } catch (error) {
       console.log("error -->", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div>
       <div className="bg-white rounded-lg shadow-lg p-6 mx-auto">
-        <h2 className="text-2xl font-bold text-gray-800 mb-6">User Requests</h2>
-
-        {/* Search and filters */}
-        <div className="mb-6 flex items-center">
-          <div className="relative flex-grow">
-            <input
-              type="text"
-              placeholder="Search by name, email or request type..."
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <Search
-              className="absolute left-3 top-2.5 text-gray-400"
-              size={18}
-            />
-          </div>
-        </div>
-
-        {/* Requests table */}
-        <div className="overflow-x-auto">
-          <table className="min-w-full bg-white">
-            <thead>
-              <tr className="bg-gray-100 border-b border-gray-200">
-                <th className="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  User
-                </th>
-                <th className="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Email
-                </th>
-                <th className="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Request Type
-                </th>
-                <th className="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Date
-                </th>
-                <th className="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Status
-                </th>
-                <th className="py-3 px-6 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Action
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200">
-              {currentItems.length > 0 ? (
-                currentItems.map((request) => (
-                  <tr key={request.id} className="hover:bg-gray-50">
-                    <td className="py-4 px-6 text-sm font-medium text-gray-900">
-                      {request?.username}
-                    </td>
-                    <td className="py-4 px-6 text-sm text-gray-500">
-                      {request?.email}
-                    </td>
-                    <td className="py-4 px-6 text-sm text-gray-500">User</td>
-                    <td className="py-4 px-6 text-sm text-gray-500">
-                      {request?.createdAt &&
-                        new Date(request.createdAt).toLocaleString()}
-                    </td>
-                    <td className="py-4 px-6 text-sm">
-                      {request.status === "acknowledged" ? (
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                          <CheckCircle className="mr-1" size={14} />
-                          Acknowledged
-                        </span>
-                      ) : (
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
-                          <Clock className="mr-1" size={14} />
-                          Pending
-                        </span>
-                      )}
-                    </td>
-                    <td className="py-4 px-6 text-sm font-medium text-center">
-                      <button
-                        onClick={() => acknowledgeRequest(request?._id)}
-                        disabled={loading}
-                        className={`px-3 py-1 rounded-md ${
-                          request.status === "acknowledged"
-                            ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                            : "bg-[#F50A8B] hover:bg-pink-600 text-white font-bold inline-flex items-center gap-2"
-                        } transition-colors duration-200`}
-                      >
-                        Acknowledge{" "}
-                        {loading && currentId === request?._id && (
-                          <span>
-                            <TbLoader2 className="text-white text-lg animate-spin" />
-                          </span>
-                        )}
-                      </button>
-                    </td>
-                  </tr>
-                ))
-              ) : (
-                <tr>
-                  <td
-                    colSpan="6"
-                    className="py-4 px-6 text-sm text-center text-gray-500"
-                  >
-                    No requests found
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
-
-        {/* Pagination */}
-        {filteredRequests.length > itemsPerPage && (
-          <div className="flex items-center justify-between mt-6">
-            <div className="text-sm text-gray-500">
-              Showing {indexOfFirstItem + 1} to{" "}
-              {Math.min(indexOfLastItem, filteredRequests.length)} of{" "}
-              {filteredRequests.length} entries
-            </div>
-            <div className="flex space-x-2">
-              <button
-                onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-                disabled={currentPage === 1}
-                className={`p-2 rounded-md ${
-                  currentPage === 1
-                    ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                }`}
-              >
-                <ChevronLeft size={16} />
-              </button>
-              {[...Array(totalPages)].map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCurrentPage(i + 1)}
-                  className={`px-3 py-1 rounded-md ${
-                    currentPage === i + 1
-                      ? "bg-blue-600 text-white"
-                      : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                  }`}
-                >
-                  {i + 1}
-                </button>
-              ))}
-              <button
-                onClick={() =>
-                  setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-                }
-                disabled={currentPage === totalPages}
-                className={`p-2 rounded-md ${
-                  currentPage === totalPages
-                    ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                }`}
-              >
-                <ChevronRight size={16} />
-              </button>
-            </div>
-          </div>
-        )}
-      </div>
-
-      <div className="bg-white rounded-lg shadow-lg p-6 mx-auto">
         <h2 className="text-2xl font-bold text-gray-800 mb-6">
           Price List Control To User
         </h2>
 
         {/* Search and filters */}
-        <div className="mb-6 flex items-center">
+        {/* <div className="mb-6 flex items-center">
           <div className="relative flex-grow">
             <input
               type="text"
@@ -470,7 +340,7 @@ export default function UserRequestsTable() {
               size={18}
             />
           </div>
-        </div>
+        </div> */}
 
         {/* Requests table */}
         <div className=" overflow-x-auto">
@@ -507,11 +377,11 @@ export default function UserRequestsTable() {
                   <th className="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Products List
                   </th>
-                  <th className="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  {/* <th className="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Advantia List
-                  </th>
+                  </th> */}
                   <th className="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Integra List
+                    Verify User
                   </th>
                   <th className="py-3 px-6 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Action
@@ -529,30 +399,30 @@ export default function UserRequestsTable() {
                       {request?.email}
                     </td>
                     <td className="py-4 px-6 text-sm text-gray-500">
-                      <input
-                        type="checkbox"
-                        name=""
-                        id=""
-                        checked={request?.product_list}
-                        onChange={(e) =>
-                          handleInput("product_list", e.target.checked, request)
-                        }
-                      />
-                    </td>
-                    <td className="py-4 px-6 text-sm text-gray-500">
-                      <input
-                        type="checkbox"
-                        name=""
-                        id=""
-                        checked={request?.advantia_list}
-                        onChange={(e) =>
-                          handleInput(
-                            "advantia_list",
-                            e.target.checked,
-                            request
-                          )
-                        }
-                      />
+                      <select
+                        name="lists"
+                        id="list"
+                        onChange={(e) => handleInput(e.target.value, request)}
+                      >
+                        <option
+                          value="product_list"
+                          selected={request?.product_list ? true : false}
+                        >
+                          Product List
+                        </option>
+                        <option
+                          value="advantia_list"
+                          selected={request?.advantia_list ? true : false}
+                        >
+                          Advantia List
+                        </option>
+                        <option
+                          value="integra_list"
+                          selected={request?.integra_list ? true : false}
+                        >
+                          Integra List
+                        </option>
+                      </select>
                     </td>
                     <td className="py-4 px-6 text-sm">
                       <span className="py-4 px-6 text-sm text-gray-500">
@@ -560,23 +430,35 @@ export default function UserRequestsTable() {
                           type="checkbox"
                           name=""
                           id=""
-                          checked={request?.integra_list}
+                          checked={request?.status}
                           onChange={(e) =>
-                            handleInput(
-                              "integra_list",
-                              e.target.checked,
-                              request
-                            )
+                            handleInput(e.target.checked, request, "status")
                           }
                         />
                       </span>
                     </td>
                     <td className="py-4 px-6 text-sm font-medium text-center">
-                      <button
+                      {/* <button
                         onClick={() => update_visible_user(request)}
                         className="px-3 py-1 rounded-md bg-[#F50A8B] hover:bg-pink-600 text-white font-bold"
                       >
                         Allow
+                      </button> */}
+                      <button
+                        onClick={() => update_visible_user(request)}
+                        disabled={loading}
+                        className={`px-3 py-1 rounded-md ${
+                          request.status === "acknowledged"
+                            ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                            : "bg-[#F50A8B] hover:bg-pink-600 text-white font-bold inline-flex items-center gap-2"
+                        } transition-colors duration-200`}
+                      >
+                        Allow{" "}
+                        {loading && currentId === request?._id && (
+                          <span>
+                            <TbLoader2 className="text-white text-lg animate-spin" />
+                          </span>
+                        )}
                       </button>
                     </td>
                   </tr>
