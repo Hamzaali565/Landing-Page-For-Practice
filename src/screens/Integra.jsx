@@ -167,10 +167,13 @@ const Integra = () => {
       {listData.length !== 0 && (
         <div className="pt-36">
           <div className="border-2 flex font-bold text-xs md:text-sm lg:text-lg item-center bg-[#F4F4F4] mt-4 mx-3">
-            <p className="border-r-2 p-2 w-[25%] md: lg:w-[10%] text-center">
+            <p className="border-r-2 p-2 w-[25%] md: lg:w-[7.5%] text-center">
               Code
             </p>
-            <p className="border-r-2 p-2 w-[25%] md: lg:w-[30%] text-center">
+            <p className="border-r-2 p-2 hidden lg:block w-[7.5%] text-center">
+              Integra Code
+            </p>
+            <p className="border-r-2 p-2 w-[25%] md: lg:w-[25%] text-center">
               Name
             </p>
             {/* <p className="border-r-2 p-2 w-[10%] text-center hidden lg:block">
@@ -200,10 +203,13 @@ const Integra = () => {
             className="border-2 border-t-0 flex text-xs md:text-sm lg:text-sm item-center mx-3"
             key={index}
           >
-            <p className="border-r-2 p-2 w-[25%] md: lg:w-[10%] text-left">
+            <p className="border-r-2 p-2 w-[25%] md: lg:w-[7.5%] text-left">
               {items?.code}
             </p>
-            <p className="border-r-2 p-2 w-[25%] md: lg:w-[30%] text-left">
+            <p className="border-r-2 p-2 hidden lg:block w-[7.5%] text-center">
+              {items?.integra_code}
+            </p>
+            <p className="border-r-2 p-2 w-[25%] md: lg:w-[25%] text-left">
               {items?.name}
             </p>
             {/* <p className="border-r-2 p-2 w-[10%] text-left hidden lg:block">
